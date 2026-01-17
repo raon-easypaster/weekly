@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>당신이 보고 싶습니다 (롬 31) - 주간 묵상집</title>
+    <style>
+        :root {
+            --primary: #451a03;
+            --secondary: #92400e;
+            --accent: #f59e0b;
+            --bg: #fcfaf7;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --locked: #d1d5db;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+        .container { 
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 16px 16px 60px 16px;
+        }
+        header { 
+            text-align: center; 
+            padding: 30px 20px;
+            background: white;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .church-name { font-size: 0.8rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        h1 { font-size: 1.5rem; color: var(--primary); margin: 0 0 10px 0; line-height: 1.3; }
+        .main-scripture { 
+            display: inline-block;
+            background: #fffbeb;
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .tabs-container {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding: 4px 4px 12px 4px;
+            scrollbar-width: none;
+        }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            position: relative;
+            flex: 0 0 54px;
+            height: 54px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.locked {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+        }
+        .lock-icon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 10px;
+            background: #9ca3af;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .tab-btn.locked .lock-icon { display: flex; }
+        .tab-btn.locked .tab-name, .tab-btn.locked .tab-label { opacity: 0.5; }
+
+        .tab-label { font-size: 8px; font-weight: 800; opacity: 0.7; }
+        .tab-name { font-size: 1.1rem; font-weight: 900; }
+
+        .day-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 24px;
+            border-left: 6px solid var(--accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .day-badge { background: #fff7ed; color: #c2410c; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; }
+        .cross-icon { color: #fde68a; font-size: 1.2rem; }
+        .card-title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 12px 0; }
+        .scripture-box { 
+            background: #fdfaf3; 
+            padding: 14px; 
+            border-radius: 16px; 
+            font-size: 0.9rem; 
+            color: #78350f; 
+            font-style: italic; 
+            margin-bottom: 20px;
+            border: 1px solid #fef3c7;
+        }
+        .content-section { margin-bottom: 20px; }
+        .content-section label { display: block; font-size: 0.7rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px; }
+        .reflection { font-size: 1.1rem; font-weight: 600; color: #374151; margin: 0; font-style: italic; }
+        .action { font-size: 1rem; color: #4b5563; margin: 0; }
+        .prayer-box { background: #fafafa; padding: 16px; border-radius: 16px; }
+        .prayer-box label { color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; display: block; }
+        .prayer { font-size: 0.85rem; color: #6b7280; font-style: italic; margin: 0; }
+        
+        .wesley-quote {
+            background: var(--primary);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 24px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .quote-text { font-size: 1rem; font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+        .quote-author { font-size: 0.75rem; font-weight: bold; opacity: 0.7; }
+        
+        footer { text-align: center; padding: 30px 0; color: #9ca3af; font-size: 0.7rem; }
+
+        @media print {
+            .tabs-container { display: none !important; }
+            .day-content { display: block !important; margin-bottom: 30px; page-break-inside: avoid; }
+            body { background: white; }
+            .container { max-width: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="church-name">라온동행교회</span>
+            <h1>당신이 보고 싶습니다 (롬 31)</h1>
+            <div class="main-scripture">본문: 로마서 15:29</div>
+        </header>
+
+        <div class="tabs-container">
+            
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">DAY 1</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">DAY 2</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">DAY 3</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">DAY 4</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">DAY 5</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">DAY 6</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">DAY 7</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+        </div>
+
+        <div class="contents">
+            
+      <div id="day-content-1" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">주일요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">나를 먼저 찾아오신 선행적 은총</h3>
+          <div class="scripture-box">사도행전 9:4-6</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"바울이 다메섹 도상에서 예수님을 만난 것처럼, 당신의 삶에 먼저 찾아오셔서 손 내밀어 주셨던 하나님의 은혜는 언제였나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루, 나를 먼저 사랑해주신 하나님께 감사하는 마음으로 주위 사람에게 따뜻한 안부 인사를 건네보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 제가 주님을 알기도 전에 먼저 저를 택하시고 사랑해주셔서 감사합니다. 그 은혜를 잊지 않고 오늘을 살게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-2" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">월요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">공동체 속에서 피어나는 성결</h3>
+          <div class="scripture-box">사도행전 9:17-19</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"바울은 아나니아와 제자들의 도움을 통해 비로소 눈을 떴습니다. 당신의 신앙 성장을 위해 하나님께서 붙여주신 소중한 믿음의 동역자들은 누구인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나에게 영적 영감을 주는 공동체 식구 한 명에게 감사의 문자나 메시지를 보내보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">홀로 서는 신앙이 아니라 공동체 안에서 함께 울고 웃으며 주님의 성결을 닮아가는 제자가 되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-3" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">화요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">안주하지 않는 복음의 열정</h3>
+          <div class="scripture-box">로마서 15:16</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"바울은 이방인을 위한 제사장 직분을 사명으로 여겼습니다. 당신이 현재 머물러 있는 편안한 자리를 넘어, 주님이 새롭게 바라보길 원하시는 사역의 현장은 어디인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">교회나 이웃을 위해 내가 조금 불편하더라도 기쁘게 감당할 수 있는 작은 봉사 하나를 찾아 실천해보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">안전한 포구에만 머무는 배가 아니라, 거친 파도를 뚫고 복음을 전하러 나가는 사명자의 삶을 살게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-4" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">수요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">지금 여기가 나의 땅 끝입니다</h3>
+          <div class="scripture-box">마태복음 28:19-20</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"땅 끝은 지리적인 먼 곳만이 아닙니다. 내 인내심이 바닥나고 사랑하기 힘든 '오늘 나의 삶의 현장'이 바로 땅 끝입니다. 당신의 땅 끝은 어디인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 가장 대하기 힘들거나 소원했던 가족 혹은 동료를 위해 비난 대신 축복의 기도를 먼저 하세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">멀리서만 사명을 찾지 않게 하시고, 오늘 제가 밟고 있는 이 땅이 주님이 파송하신 선교지임을 깨닫게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-5" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">목요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">무력함 속에서 드러나는 주님의 능력</h3>
+          <div class="scripture-box">로마서 15:20</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"살다 보면 내 힘으로 어찌할 수 없는 억울하고 힘든 순간을 만납니다. 그 무력한 순간이 오히려 주님의 능력이 나타나는 통로임을 믿으시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">답답한 문제가 있다면 내 힘으로 해결하려 애쓰기보다, 10분간 침묵하며 주님께 모든 주권을 맡기는 기도를 드려보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">나의 약함이 주님의 강함이 됨을 믿습니다. 절망의 자리에서도 복음의 꽃을 피우시는 주님만 신뢰하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-6" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">금요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">영혼을 드리는 거룩한 예배</h3>
+          <div class="scripture-box">로마서 15:16</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"복음을 전하는 것은 한 영혼을 하나님이 기뻐하시는 '거룩한 제물'로 올려드리는 예배입니다. 당신을 통해 하나님께 드려지길 원하는 영혼은 누구인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">믿지 않는 지인 한 명의 이름을 적어두고, 그가 하나님을 만나는 예배자가 되도록 간절히 중보기도 하세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">제 삶이 단순히 지식을 전하는 자가 아니라, 영혼을 하나님께 인도하는 복음의 제사장이 되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-7" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">토요일 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">완전한 사랑을 향한 동행</h3>
+          <div class="scripture-box">로마서 15:29</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"바울은 그리스도의 충만한 복을 가지고 로마로 가길 원했습니다. 라온동행교회와 함께 걸어갈 앞으로의 복음 여정에서 당신이 기대하는 은혜는 무엇인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">3월 방글라데시 선교와 교회의 사명을 위해 구체적인 후원이나 기도로 동참할 방법을 결정해보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">라온동행교회가 복음을 알고 공동체를 세우며 열방으로 나가는 사명을 끝까지 감당하게 하소서. 우리를 통해 주님 홀로 영광 받으소서.</p>
+          </div>
+        </div>
+      </div>
+    
+        </div>
+
+        <div class="wesley-quote">
+            <p class="quote-text">"그리스도인의 완전은 하나님을 전심으로 사랑하며, 우리의 이웃을 우리 자신처럼 사랑하는 것입니다."</p>
+            <p class="quote-author">- 존 웨슬리 -</p>
+        </div>
+
+        <footer>© 라온동행교회 주간 묵상집</footer>
+    </div>
+
+    <script>
+        const todayDayNum = new Date().getDay() + 1;
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) {
+                    btn.classList.add('locked');
+                }
+            }
+            showDay(todayDayNum, document.getElementById('tab-btn-' + todayDayNum));
+        }
+
+        function showDay(dayNum, btn) {
+            if (dayNum > todayDayNum) {
+                alert('해당 요일의 묵상은 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
