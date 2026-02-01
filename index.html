@@ -203,7 +203,7 @@
                     const year = date.getFullYear();
                     const month = date.getMonth() + 1;
                     const key = `${year}-${month}`;
-                    
+
                     if (!groups[key]) {
                         groups[key] = {
                             year,
@@ -237,9 +237,15 @@
 
                     group.items.forEach(item => {
                         const card = document.createElement('a');
-                        card.href = item.url.startsWith('http') ? item.url : `./${item.url}`;
+                        const targetUrl = item.url.startsWith('http') ? item.url : `./${item.url}`;
+                        card.href = targetUrl;
                         card.target = '_blank';
                         card.className = `card ${item.isLatest ? 'latest' : ''}`;
+
+                        // Debugging click listener
+                        card.addEventListener('click', (e) => {
+                            console.log('Opening:', targetUrl);
+                        });
 
                         let badgeHtml = '';
                         if (item.isLatest) {
@@ -249,7 +255,7 @@
                         const dateObj = new Date(item.date);
                         const weekOfMonth = Math.ceil(dateObj.getDate() / 7);
                         const formattedDate = `${dateObj.getMonth() + 1}.${dateObj.getDate().toString().padStart(2, '0')}`;
-                        
+
                         const weekText = `${dateObj.getMonth() + 1}월 ${weekOfMonth}주 (${formattedDate} ~ )`;
 
                         card.innerHTML = `
