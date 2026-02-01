@@ -103,9 +103,11 @@ function build() {
             const metadata = extractMetadata(file);
             if (metadata.date) {
                 archiveData.push(metadata);
+            } else {
+                console.warn(`⚠️ Skipped ${path.basename(file)}: Could not extract date.`);
             }
         } catch (err) {
-            console.error(`Error processing ${file}:`, err);
+            console.error(`❌ Error processing ${file}:`, err);
         }
     });
 
