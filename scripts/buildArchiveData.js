@@ -10,7 +10,7 @@ function getAllHtmlFiles(dirPath, arrayOfFiles) {
 
     arrayOfFiles = arrayOfFiles || [];
 
-    files.forEach(function(file) {
+    files.forEach(function (file) {
         if (fs.statSync(dirPath + "/" + file).isDirectory()) {
             if (!EXCLUDE_DIRS.includes(file)) {
                 arrayOfFiles = getAllHtmlFiles(dirPath + "/" + file, arrayOfFiles);
@@ -44,10 +44,16 @@ function extractMetadata(filePath) {
     if (scriptureMatch && scriptureMatch[1]) {
         scripture = scriptureMatch[1].trim();
     } else {
-        // Pattern 2: Typical bible-box or other patterns could be added here
+        // Pattern 2: scripture-box
         const scriptureBoxMatch = content.match(/<div class="scripture-box">(.*?)<\/div>/i);
         if (scriptureBoxMatch && scriptureBoxMatch[1]) {
             scripture = scriptureBoxMatch[1].trim();
+        } else {
+            // Pattern 3: guide-info with "|" separator
+            const guideInfoMatch = content.match(/<div class="guide-info">.*?\|\s*(.*?)<\/div>/i);
+            if (guideInfoMatch && guideInfoMatch[1]) {
+                scripture = guideInfoMatch[1].trim();
+            }
         }
     }
 
@@ -105,7 +111,7 @@ function build() {
     archiveData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const outputContent = `window.ARCHIVE_DATA = ${JSON.stringify(archiveData, null, 2)};`;
-    
+
     fs.writeFileSync(DATA_OUTPUT, outputContent);
     console.log(`Successfully generated archive data for ${archiveData.length} files.`);
 }

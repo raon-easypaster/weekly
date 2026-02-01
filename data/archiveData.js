@@ -1,10 +1,10 @@
 window.ARCHIVE_DATA = [
   {
     "title": "진짜 슈퍼스타 - 가정예배서",
-    "scripture": "",
+    "scripture": "로마서 16:3-5",
     "date": "2026-02-01",
-    "url": "2026/2026-02-01.html",
-    "fileName": "2026-02-01.html"
+    "url": "2026/260201daily.html",
+    "fileName": "260201daily.html"
   },
   {
     "title": "동역의 영광, 21세기의 뵈뵈를 찾아서",
