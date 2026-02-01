@@ -58,24 +58,26 @@ function extractMetadata(filePath) {
     }
 
     // Extract Date from filename or content
-    // Priority: YYYY-MM-DD.html or YYMMDDdaily.html
+    // Priority: YYYY-MM-DD, YYYYMMDD, YYMMDD
     let date = '';
-    const dateMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
-    if (dateMatch) {
-        date = dateMatch[1];
-    } else {
-        const shortDateMatch = fileName.match(/(\d{2})(\d{2})(\d{2})/);
-        if (shortDateMatch) {
-            date = `20${shortDateMatch[1]}-${shortDateMatch[2]}-${shortDateMatch[3]}`;
-        }
+    const dateDashMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
+    const dateFullMatch = fileName.match(/(\d{4})(\d{2})(\d{2})/);
+    const shortDateMatch = fileName.match(/(\d{2})(\d{2})(\d{2})/);
+
+    if (dateDashMatch) {
+        date = dateDashMatch[1];
+    } else if (dateFullMatch) {
+        date = `${dateFullMatch[1]}-${dateFullMatch[2]}-${dateFullMatch[3]}`;
+    } else if (shortDateMatch) {
+        date = `20${shortDateMatch[1]}-${shortDateMatch[2]}-${shortDateMatch[3]}`;
     }
 
     // If still no date, try extracting from content
     if (!date) {
-        const contentDateMatch = content.match(/<span class="date-range">(.*?)<\/span>/i);
-        if (contentDateMatch && contentDateMatch[1]) {
-            // Simplified: extract first date found in range
-            const foundDate = contentDateMatch[1].match(/(\d{4})\.(\d{1,2})\.(\d{1,2})/);
+        const contentDateMatch = content.match(/<span class="date-range">(.*?)<\/span>|<div class="guide-info">(.*?)<\/div>/i);
+        const matchText = contentDateMatch ? (contentDateMatch[1] || contentDateMatch[2]) : '';
+        if (matchText) {
+            const foundDate = matchText.match(/(\d{4})[\.\- ](\d{1,2})[\.\- ](\d{1,2})/);
             if (foundDate) {
                 date = `${foundDate[1]}-${foundDate[2].padStart(2, '0')}-${foundDate[3].padStart(2, '0')}`;
             }
@@ -86,7 +88,7 @@ function extractMetadata(filePath) {
         title,
         scripture,
         date,
-        url: relativePath,
+        url: relativePath.split(path.sep).join('/'), // Force forward slashes
         fileName
     };
 }
