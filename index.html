@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,12 @@
         :root {
             --primary-color: #4A6fa5;
             --bg-color: #f4f4f9;
-            --highlight-bg: #fffbf0; /* 강조 배경색 (연한 노랑) */
-            --highlight-border: #f5c358; /* 강조 테두리색 */
+            --highlight-bg: #fffbf0;
+            /* 강조 배경색 (연한 노랑) */
+            --highlight-border: #f5c358;
+            /* 강조 테두리색 */
         }
+
         body {
             font-family: 'Pretendard', sans-serif;
             background-color: var(--bg-color);
@@ -20,22 +24,38 @@
             color: #333;
             line-height: 1.6;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
+
         header {
             text-align: center;
             margin-bottom: 50px;
             padding: 30px 0;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-        h1 { margin: 0; color: var(--primary-color); font-size: 1.8rem; letter-spacing: -0.5px; }
-        p.subtitle { color: #666; margin-top: 10px; font-size: 1rem; }
-        
-        .month-section { margin-bottom: 50px; }
+
+        h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            color: #666;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .month-section {
+            margin-bottom: 50px;
+        }
+
         .month-title {
             border-bottom: 2px solid #e0e0e0;
             padding-bottom: 10px;
@@ -64,18 +84,22 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
         }
+
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
         /* ✨ 중요: 최신 글 강조 스타일 (Highlights) */
         .card.latest {
-            background-color: var(--highlight-bg); /* 배경색 변경 */
-            border: 2px solid var(--highlight-border); /* 테두리 강조 */
+            background-color: var(--highlight-bg);
+            /* 배경색 변경 */
+            border: 2px solid var(--highlight-border);
+            /* 테두리 강조 */
         }
+
         /* 최신 글에 붙는 'NEW' 뱃지 */
         .badge-new {
             position: absolute;
@@ -87,7 +111,7 @@
             font-weight: bold;
             padding: 5px 10px;
             border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             animation: bounce 2s infinite;
         }
 
@@ -100,6 +124,7 @@
             align-items: center;
             gap: 5px;
         }
+
         /* 최신 글 날짜 색상 변경 */
         .card.latest .card-date {
             color: #d88c00;
@@ -112,6 +137,7 @@
             margin-bottom: 20px;
             word-break: keep-all;
         }
+
         .card-icon {
             align-self: flex-end;
             font-size: 0.9rem;
@@ -121,12 +147,26 @@
 
         /* 뱃지 애니메이션 */
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-3px);}
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-5px);
+            }
+
+            60% {
+                transform: translateY(-3px);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -141,85 +181,95 @@
 
     </div>
 
-    <script src="data/archiveData.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('archive-container');
-            if (!container || !window.ARCHIVE_DATA) return;
+            if (!container) return;
 
-            // Group by Year and Month
-            const groups = {};
-            window.ARCHIVE_DATA.forEach((item, index) => {
-                const date = new Date(item.date);
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const key = `${year}-${month}`;
-                
-                if (!groups[key]) {
-                    groups[key] = {
-                        year,
-                        month,
-                        items: []
-                    };
-                }
-                groups[key].items.push({ ...item, isLatest: index === 0 });
-            });
+            // Load archiveData.js dynamically with a cache buster
+            const script = document.createElement('script');
+            script.src = `data/archiveData.js?v=${Date.now()}`;
+            script.onload = () => {
+                if (!window.ARCHIVE_DATA) return;
+                renderArchive(window.ARCHIVE_DATA);
+            };
+            document.head.appendChild(script);
 
-            // Sort keys descending
-            const sortedKeys = Object.keys(groups).sort((a, b) => {
-                const [yA, mA] = a.split('-').map(Number);
-                const [yB, mB] = b.split('-').map(Number);
-                if (yA !== yB) return yB - yA;
-                return mB - mA;
-            });
-
-            sortedKeys.forEach(key => {
-                const group = groups[key];
-                const section = document.createElement('div');
-                section.className = 'month-section';
-
-                const title = document.createElement('h2');
-                title.className = 'month-title';
-                title.textContent = `📅 ${group.year}년 ${group.month}월`;
-                section.appendChild(title);
-
-                const grid = document.createElement('div');
-                grid.className = 'grid';
-
-                group.items.forEach(item => {
-                    const card = document.createElement('a');
-                    card.href = item.url;
-                    card.target = '_blank';
-                    card.className = `card ${item.isLatest ? 'latest' : ''}`;
-
-                    let badgeHtml = '';
-                    if (item.isLatest) {
-                        badgeHtml = '<div class="badge-new">NEW ✨</div>';
-                    }
-
-                    const dateObj = new Date(item.date);
-                    const weekOfMonth = Math.ceil(dateObj.getDate() / 7);
-                    const formattedDate = `${dateObj.getMonth() + 1}.${dateObj.getDate().toString().padStart(2, '0')}`;
+            function renderArchive(data) {
+                // Group by Year and Month
+                const groups = {};
+                data.forEach((item, index) => {
+                    const date = new Date(item.date);
+                    const year = date.getFullYear();
+                    const month = date.getMonth() + 1;
+                    const key = `${year}-${month}`;
                     
-                    // Specific formatting for week text if possible, or just default to date
-                    const weekText = `${dateObj.getMonth() + 1}월 ${weekOfMonth}주 (${formattedDate} ~ )`;
-
-                    card.innerHTML = `
-                        ${badgeHtml}
-                        <div>
-                            <div class="card-date">🔔 ${weekText}</div>
-                            <div class="card-title">${item.title}${item.scripture ? '<br>' + item.scripture : ''}</div>
-                        </div>
-                        <div class="card-icon">${item.isLatest ? '묵상하러 가기 👉' : '다시 보기 📖'}</div>
-                    `;
-                    grid.appendChild(card);
+                    if (!groups[key]) {
+                        groups[key] = {
+                            year,
+                            month,
+                            items: []
+                        };
+                    }
+                    groups[key].items.push({ ...item, isLatest: index === 0 });
                 });
 
-                section.appendChild(grid);
-                container.appendChild(section);
-            });
+                // Sort keys descending
+                const sortedKeys = Object.keys(groups).sort((a, b) => {
+                    const [yA, mA] = a.split('-').map(Number);
+                    const [yB, mB] = b.split('-').map(Number);
+                    if (yA !== yB) return yB - yA;
+                    return mB - mA;
+                });
+
+                sortedKeys.forEach(key => {
+                    const group = groups[key];
+                    const section = document.createElement('div');
+                    section.className = 'month-section';
+
+                    const title = document.createElement('h2');
+                    title.className = 'month-title';
+                    title.textContent = `📅 ${group.year}년 ${group.month}월`;
+                    section.appendChild(title);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'grid';
+
+                    group.items.forEach(item => {
+                        const card = document.createElement('a');
+                        card.href = item.url.startsWith('http') ? item.url : `./${item.url}`;
+                        card.target = '_blank';
+                        card.className = `card ${item.isLatest ? 'latest' : ''}`;
+
+                        let badgeHtml = '';
+                        if (item.isLatest) {
+                            badgeHtml = '<div class="badge-new">NEW ✨</div>';
+                        }
+
+                        const dateObj = new Date(item.date);
+                        const weekOfMonth = Math.ceil(dateObj.getDate() / 7);
+                        const formattedDate = `${dateObj.getMonth() + 1}.${dateObj.getDate().toString().padStart(2, '0')}`;
+                        
+                        const weekText = `${dateObj.getMonth() + 1}월 ${weekOfMonth}주 (${formattedDate} ~ )`;
+
+                        card.innerHTML = `
+                            ${badgeHtml}
+                            <div>
+                                <div class="card-date">🔔 ${weekText}</div>
+                                <div class="card-title">${item.title}${item.scripture ? '<br>' + item.scripture : ''}</div>
+                            </div>
+                            <div class="card-icon">${item.isLatest ? '묵상하러 가기 👉' : '다시 보기 📖'}</div>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    section.appendChild(grid);
+                    container.appendChild(section);
+                });
+            }
         });
     </script>
 
 </body>
+
 </html>
