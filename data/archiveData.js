@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "그들에게서 떠나라 (로마서 16:17-20)",
+    "scripture": "로마서 16:17",
+    "date": "2026-02-08",
+    "url": "2026/260208daily.html",
+    "fileName": "260208daily.html"
+  },
+  {
     "title": "진짜 슈퍼스타 - 가정예배서",
     "scripture": "로마서 16:3-5",
     "date": "2026-02-01",
