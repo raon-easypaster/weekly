@@ -1,0 +1,35 @@
+name: Update Archive Data
+on:
+  push:
+    paths:
+      - '2025/*.html'
+      - '2026/*.html'
+      - 'index.html'
+      - 'scripts/buildArchiveData.js'
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (if any)
+        run: npm install
+      - name: Run build script
+        run: npm run build
+      - name: Verify build output
+        run: ls -l data/archiveData.js
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update archive data [skip ci]"
+          file_pattern: data/archiveData.js
