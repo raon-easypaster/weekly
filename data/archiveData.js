@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "주목해보아라: 하나님께서 하시는 일",
+    "scripture": "요한복음 9:1-2",
+    "date": "2026-02-15",
+    "url": "2026/260215daily.html",
+    "fileName": "260215daily.html"
+  },
+  {
     "title": "그들에게서 떠나라 (로마서 16:17-20)",
     "scripture": "로마서 16:17",
     "date": "2026-02-08",
