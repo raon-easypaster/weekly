@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>하나님 나라를 위한 '라온동행'</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="로마서 16:21-27">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">2/22</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">2/23</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">2/24</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">2/25</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">2/26</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">2/27</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">2/28</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 22일 주일요일 | 로마서 1:16-17</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 22일 주일요일**  
+                **오늘의 본문: 로마서 1:16-17**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">로마서 전체를 관통하는 복음의 능력을 묵상해 봅시다. 겉모습만 화려한 '사상누각'의 신앙이 아니라, 우리 영혼을 구원하는 복음의 본질을 깊이 깨닫는 것이 모든 신앙의 시작입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>유앙겔리온(Euangelion): 좋은 소식, 복음. 승전보를 전하는 전령의 외침처럼 우리 삶을 근본적으로 변화시키는 기쁜 소식을 의미합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학에서 '중생(Regeneration)'은 복음의 본질을 깨닫고 하나님과의 관계가 회복되는 첫 단추입니다. 복음은 단순한 지식이 아니라 우리를 변화시키는 성령의 실제적인 능력이며, 성결의 삶으로 나아가기 위한 견고한 기초가 됩니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나의 신앙은 복음이라는 단단한 반석 위에 서 있습니까, 아니면 나의 경험이나 감정이라는 모래 위에 서 있습니까?"</div>
+                실천 방안: 오늘 하루, 내가 믿는 복음의 핵심 내용(예수 그리스도의 죽으심과 부활)을 한 문장으로 적어 가족과 나누어 보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 화려한 겉치레보다 복음의 본질을 사모하게 하소서. 내 영혼이 오직 그리스도라는 반석 위에 굳건히 서게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 23일 월요일 | 로마서 16:25-26</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 23일 월요일**  
+                **오늘의 본문: 로마서 16:25-26**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">복음은 인간의 지혜로 탐구해서 얻는 것이 아니라 하나님이 열어주셔야 깨닫는 '신비'입니다. 영원 전부터 감추어졌다가 이제 나타난 하나님의 지혜를 겸손히 구합시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>뮈스테리온(Mysterion): 신비, 비밀. 인간의 지혜로는 알 수 없으나 성령의 계시를 통해서만 신자들에게 밝히 드러난 하나님의 구원 계획을 뜻합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 성령의 조명(Illumination)을 강조합니다. 복음은 단순한 공부가 아니라 성령께서 우리 마음의 눈을 밝혀주실 때 비로소 '신비의 계시'로 경험됩니다. 이는 신자가 성결한 삶을 살 수 있도록 돕는 성령의 은총적 사역입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "최근 말씀을 읽거나 기도하는 중에 성령께서 깨닫게 해주신 '복음의 신비'가 있나요?"</div>
+                실천 방안: 성경을 펴기 전, '성령님, 기록된 말씀을 통해 하나님의 마음을 알게 하소서'라고 1분간 간절히 기도하고 읽으세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">지혜와 계시의 정신을 부어주시는 하나님, 내 눈을 열어 주의 법의 기이한 것을 보게 하시고 복음의 깊은 비밀을 깨닫게 하소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 24일 화요일 | 마태복음 7:24-27</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 24일 화요일**  
+                **오늘의 본문: 마태복음 7:24-27**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">기초만 닦아놓고 방치된 건물은 흉물이 됩니다. 신앙의 본질을 알았다면 이제는 그 위에 '실천'이라는 기둥을 세워야 합니다. 듣고 행하는 자가 지혜로운 건축가입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>포이에오(Poieo): 행하다, 만들다. 단순히 머리로 동의하는 것을 넘어 의지적으로 순종하여 실제적인 결과를 만들어내는 행동을 의미합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">존 웨슬리는 '성화(Sanctification)'를 사랑으로 역사하는 믿음으로 정의했습니다. 믿음은 관념에 머물지 않고 삶의 열매로 증명되어야 합니다. 성결은 우리 삶 전체가 하나님의 거처가 되도록 매일 순종의 벽돌을 쌓는 과정입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 신앙의 집은 혹시 기초 공사만 된 채 멈춰 있지는 않습니까? 내가 실천해야 할 순종은 무엇입니까?"</div>
+                실천 방안: 오늘 내가 만나는 사람들에게 그리스도의 사랑을 구체적인 친절(따뜻한 말 한마디, 양보)로 표현해 보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">말뿐인 신앙인이 아니라 삶으로 복음을 증명하는 건축가가 되게 하소서. 내 삶의 모든 순간이 주님이 거하시는 거룩한 집이 되길 소망합니다.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 25일 수요일 | 로마서 16:21-23</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 25일 수요일**  
+                **오늘의 본문: 로마서 16:21-23**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 혼자 사역하지 않았습니다. 디모데, 가이오, 에라스도 등 다양한 배경을 가진 이들이 한 팀이 되어 하나님 나라를 세웠습니다. 우리도 '함께' 갈 때 무너지지 않습니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>쉬네르고스(Synergos): 동역자. 함께 일하는 자라는 뜻으로, 각기 다른 은사를 가진 이들이 하나의 목적을 위해 협력하는 상태를 말합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회의 정체성은 '성도의 교제' 안에서 완성됩니다. 성결은 개인의 도덕적 수양이 아니라 공동체 안에서 서로 사랑하고 용납하며 함께 거룩해져 가는 '사회적 성결(Social Holiness)'의 성격을 띱니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 곁에 있는 가족과 성도들을 하나님 나라를 함께 세워갈 소중한 '동역자'로 바라보고 있습니까?"</div>
+                실천 방안: 함께 신앙생활 하는 지체나 가족 중 한 명에게 감사의 문자나 전화를 해보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">독불장군처럼 혼자 신앙생활 하지 않게 하시고, 주 안에서 서로 연결되어 아름다운 성전으로 함께 지어져 가게 하소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 26일 목요일 | 로마서 16:21, 23</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 26일 목요일**  
+                **오늘의 본문: 로마서 16:21, 23**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울의 인사말에는 노예, 부자, 공직자가 섞여 있습니다. 세상은 지위로 사람을 나누지만, 교회는 오직 그리스도 안에서 '형제와 자매'일 뿐입니다. 서로를 존중하며 비교하지 맙시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>슁게네스(Syngenes): 친척, 한 혈통. 바울은 믿음의 동역자들을 육신의 혈연을 넘어선 영적 가족으로 고백하며 이 단어를 사용했습니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학은 모든 사람을 향한 하나님의 보편적 은총(Prevenient Grace)을 믿습니다. 누구나 주 안에서 귀한 존재이며, 성결한 공동체는 세상의 계급과 차별을 허물고 그리스도의 사랑으로 하나 된 평등한 가족 공동체입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 사람을 외모나 사회적 지위로 판단하고 있지는 않습니까? 주님의 눈으로 지체들을 바라보고 있나요?"</div>
+                실천 방안: 오늘 가족 식사 시간에 서로의 장점을 한 가지씩 찾아 칭찬하며 축복하는 시간을 가져보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">차별이 없는 하나님 나라의 법이 우리 가정과 교회에 흐르게 하소서. 서로를 귀히 여기며 주님의 사랑으로 하나 되게 하소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 27일 금요일 | 사도행전 1:8</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 27일 금요일**  
+                **오늘의 본문: 사도행전 1:8**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">로마서는 끝났지만 우리의 신앙 여정은 계속됩니다. 바울의 동역자들이 로마서 16장의 명단을 채웠듯, 이제는 우리가 삶의 현장에서 '라온행전'의 다음 페이지를 써 내려가야 합니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>마르튀스(Martys): 증인. 단순히 본 것을 말하는 자를 넘어, 자기 삶과 생명을 바쳐 진리를 증명하는 순교적 삶을 사는 자를 뜻합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회 사중복음 중 '재림(Second Coming)'의 신앙은 오늘을 종말론적인 책임감을 가지고 살게 합니다. 다시 오실 주님 앞에 우리 삶이 아름다운 복음의 기록이 되도록 성결한 증인의 삶을 살아야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "오늘 하루, 나의 말과 행동은 누군가에게 읽히는 '그리스도의 편지'가 되었습니까?"</div>
+                실천 방안: 이번 주일 설교 말씀 중 가장 기억에 남는 단어 하나를 정해 일주일 동안 삶의 지표로 삼아보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">성령의 능력을 부어주셔서 예루살렘과 온 유대와 사마리아와 땅끝까지 이르러 주님의 살아계심을 증거하는 삶의 기록자가 되게 하소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정 예배</h2>
+          <div class="guide-info">2026년 2월 28일 토요일 | 로마서 16:27</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">라온동행교회 가정예배서</h3>
+            <div class="section-body">
+              <div class="summary">
+                **날짜: 2026년 2월 28일 토요일**  
+                **오늘의 본문: 로마서 16:27**
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">로마서의 마지막은 하나님을 향한 찬양으로 끝납니다. 우리의 모든 수고와 연합의 결론은 '나'의 의가 아니라 오직 하나님의 영광이어야 합니다. 모든 영광을 주님께 돌립시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>독사(Doxa): 영광, 찬란한 빛. 하나님의 거룩하심과 위엄이 눈에 보이게 나타나는 상태를 의미하며, 인간의 존재 목적이기도 합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결의 궁극적인 목적은 '하나님의 영광'입니다. 우리가 온전히 성결해질 때 하나님의 형상이 회복되며, 우리 삶을 통해 하나님의 영광이 세상에 드러납니다. 이것이 웨슬리가 강조한 신자의 최고의 목적입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나의 헌신과 노력이 나를 드러내기 위한 것은 아니었습니까? 진심으로 '오직 주님께 영광'을 고백합니까?"</div>
+                실천 방안: 잠들기 전, 오늘 하루 베풀어 주신 은혜 3가지를 감사 기도로 드리며 모든 영광을 하나님께 돌리세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">지혜로우신 하나님, 우리를 통해 이루신 모든 일에 홀로 영광을 받으소서. 예수 그리스도로 말미암아 세세무궁토록 주님만 높임 받으시길 원합니다.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-02-22');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
