@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "왜? 모세였을까?(모세1)",
+    "scripture": "신명기 34:10",
+    "date": "2026-03-01",
+    "url": "2026/260301daily.html",
+    "fileName": "260301daily.html"
+  },
+  {
     "title": "하나님 나라를 위한 '라온동행'",
     "scripture": "로마서 1:16-17",
     "date": "2026-02-22",
