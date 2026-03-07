@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "모세가 될 수 있었던 이유 (모세 2)",
+    "scripture": "출애굽기 2:1-10",
+    "date": "2026-03-08",
+    "url": "2026/260308daily.html",
+    "fileName": "260308daily.html"
+  },
+  {
     "title": "왜? 모세였을까?(모세1)",
     "scripture": "신명기 34:10",
     "date": "2026-03-01",
