@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>히어로 모세: 내 능력을 넘어 하나님의 손에 붙들리는 삶 - 주간 묵상집</title>
+    <style>
+        :root {
+            --primary: #451a03;
+            --secondary: #92400e;
+            --accent: #f59e0b;
+            --bg: #fcfaf7;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; word-break: keep-all;
+        }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 16px 16px 60px 16px; }
+        header { text-align: center; padding: 30px 20px; background: white; border-radius: 24px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .church-name { font-size: 0.8rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        h1 { font-size: 1.5rem; color: var(--primary); margin: 0 0 10px 0; line-height: 1.3; }
+        .date-range { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; }
+        .main-scripture { display: inline-block; background: #fffbeb; color: var(--secondary); padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; }
+        .tabs-container { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 4px 4px 12px 4px; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 58px; height: 58px; border-radius: 16px; border: 1px solid #eee; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #9ca3af; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        .tab-btn.locked .tab-name, .tab-btn.locked .tab-label { opacity: 0.5; }
+        .tab-label { font-size: 8px; font-weight: 800; opacity: 0.7; }
+        .tab-name { font-size: 1.1rem; font-weight: 900; }
+        .day-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--card-bg); border-radius: 24px; padding: 24px; border-left: 6px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .day-badge { background: #fff7ed; color: #c2410c; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; }
+        .cross-icon { color: #fde68a; font-size: 1.2rem; }
+        .card-title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 12px 0; }
+        .scripture-box { background: #fdfaf3; padding: 14px; border-radius: 16px; font-size: 0.9rem; color: #78350f; font-style: italic; margin-bottom: 20px; border: 1px solid #fef3c7; }
+        .content-section { margin-bottom: 20px; }
+        .content-section label { display: block; font-size: 0.7rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px; }
+        .reflection { font-size: 1.1rem; font-weight: 600; color: #374151; margin: 0; font-style: italic; }
+        .action { font-size: 1rem; color: #4b5563; margin: 0; }
+        .prayer-box { background: #fafafa; padding: 16px; border-radius: 16px; }
+        .prayer-box label { color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; display: block; }
+        .prayer { font-size: 0.85rem; color: #6b7280; font-style: italic; margin: 0; }
+        .wesley-quote { background: var(--primary); color: white; padding: 30px 20px; border-radius: 24px; text-align: center; margin-top: 30px; }
+        footer { text-align: center; padding: 30px 0; color: #9ca3af; font-size: 0.7rem; }
+        @media print { .tabs-container { display: none !important; } .day-content { display: block !important; margin-bottom: 30px; page-break-inside: avoid; } body { background: white; } .container { max-width: none; padding: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="church-name">라온동행교회</span>
+            <h1>히어로 모세: 내 능력을 넘어 하나님의 손에 붙들리는 삶</h1>
+            <span class="date-range">2026.3.15 (주일) ~ 2026.3.21 (토)</span>
+            <div class="main-scripture">본문: 출애굽기 2:11-22</div>
+        </header>
+        <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">3/15</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">3/16</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">3/17</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">3/18</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">3/19</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">3/20</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">3/21</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+        <div class="contents">
+      <div id="day-content-1" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/15 (주일) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">나를 미리 찾아오신 선행적 은총</h3>
+          <div class="scripture-box">출애굽기 2:10</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세가 나일강에서 건져져 왕궁으로 인도된 것은 하나님의 세밀한 계획이었습니다. 당신의 삶에서 내가 하나님을 알기도 전에 미리 예비하시고 인도하셨던 '선행적 은총'의 순간은 언제였나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루 나의 과거를 돌아보며, 고난 중에도 나를 지키시고 좋은 길로 인도하셨던 하나님의 은혜 3가지를 적어보고 감사 기도를 드립니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">사랑의 주님, 제가 주님을 알기 전부터 저를 사랑하시고 제 삶의 걸음을 인도해 주셔서 감사합니다. 저의 모든 환경이 주님의 은총 안에 있음을 고백합니다.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-2" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/16 (월) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">세상의 지혜를 넘어 하나님 지혜로</h3>
+          <div class="scripture-box">사도행전 7:22</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 당대 최고의 학문을 익혔고 그 지식은 훗날 율법과 성막을 세우는 데 귀하게 사용되었습니다. 당신이 가진 재능이나 전문성이 단순히 나를 위한 것이 아닌, 하나님의 나라를 위해 어떻게 쓰임받길 원하시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나의 업무 지식이나 취미, 경험 중에서 공동체나 이웃을 위해 유익하게 나눌 수 있는 방법 한 가지를 찾아 실천해 봅니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">지혜의 근원 되시는 주님, 제가 배운 모든 것과 가진 모든 능력이 저의 자랑이 되지 않게 하시고, 오직 주님의 영광과 이웃의 유익을 위해 사용되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-3" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/17 (화) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">나의 의를 내려놓는 자기부정</h3>
+          <div class="scripture-box">출애굽기 2:12</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 자신의 힘으로 동족을 구하려다 실패하고 도망자가 되었습니다. 혹시 '내 열심'과 '내 방법'이 앞서서 하나님의 뜻을 놓치고 있지는 않나요? 내 안의 '나 된 의'가 무엇인지 묵상해 봅시다."</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 계획한 일들 중에서 내 고집이나 욕심이 앞선 부분은 없는지 점검하고, '주님 뜻대로 하소서'라고 세 번 외치며 일과를 시작합니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 저의 혈기와 인간적인 자신감이 주님의 일을 가로막지 않기를 원합니다. 저의 손에 든 인간적인 무기를 내려놓고 오직 주님의 능력만을 의지하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-4" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/18 (수) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">광야, 성결을 향한 훈련의 장소</h3>
+          <div class="scripture-box">출애굽기 2:15</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"화려한 왕궁을 떠나 미디안 광야로 간 모세는 40년 동안 낮아짐을 배웠습니다. 지금 당신이 겪고 있는 고독이나 정체기(광야)가 나를 더욱 거룩하고 정결하게 빚으시는 하나님의 손길임을 믿으시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루 불평 대신 감사의 언어를 사용하고, 침묵의 시간을 10분간 가지며 내 마음을 정화하시는 주님의 음성에 귀를 기울입니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">거룩하신 하나님, 광야와 같은 시간 속에서 저를 단련하시니 감사합니다. 세상의 화려함보다 주님과 동행하는 은밀한 기쁨이 제 영혼의 만족이 되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-5" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/19 (목) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">사회적 성결: 억눌린 자와 함께하기</h3>
+          <div class="scripture-box">출애굽기 2:17</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 미디안 우물가에서 괴롭힘당하는 여인들을 도와주었습니다. 웨슬리는 '개인적 성결'이 '사회적 성결'로 이어져야 함을 강조했습니다. 오늘 내 주변에 도움이 필요한 약자는 누구인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 만나는 사람들 중 소외되거나 지친 이에게 따뜻한 말 한마디를 건네거나 작은 친절을 베풀어 주님의 사랑을 흘려보냅니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">자비로운 주님, 저의 경건이 입술에만 머물지 않게 하시고, 고통받는 이웃의 필요에 반응하는 손과 발이 되어 주님의 완전한 사랑을 실천하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-6" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/20 (금) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">능력이 아닌 순종의 지팡이</h3>
+          <div class="scripture-box">출애굽기 3:1 (본문 배경 연관)</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"하나님은 금지팡이가 아닌, 평범한 목자의 지팡이를 든 모세를 부르셨습니다. 내가 가진 것이 부족하다고 느껴져 주님의 일을 주저하고 있지는 않나요? 주님은 나의 능력이 아니라 나의 순종을 기다리십니다."</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">'나는 부족해서 못 해'라는 부정적인 생각 대신, '부족한 나를 통해 일하실 하나님을 기대합니다'라는 고백으로 오늘 주어진 사명에 최선을 다합니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">전능하신 하나님, 제가 가진 작은 것을 주님 손에 올려드립니다. 저의 연약함이 주님의 강함을 드러내는 통로가 되게 하시고, 주님께 붙들린 믿음의 지팡이로 살게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-7" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/21 (토) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">완전한 사랑으로 나아가는 길</h3>
+          <div class="scripture-box">히브리서 11:24-26</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 세상의 보화보다 그리스도를 위해 받는 고난을 더 큰 재물로 여겼습니다. 하나님을 향한 '완전한 사랑'은 세상의 가치관을 뒤집는 힘입니다. 당신의 삶에서 가장 우선순위에 두어야 할 가치는 무엇입니까?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">이번 한 주간의 묵상을 정리하며, 앞으로 하나님만 의지하며 살아가기로 결단하는 내용을 일기장에 적거나 기도로 확증합니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">사랑의 주님, 모세처럼 저 또한 세상의 성공이라는 히어로를 꿈꾸기보다 하나님과 동행하는 참된 제자가 되길 원합니다. 저의 일생이 오직 주님께만 집중하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="wesley-quote">
+            <p style="font-style:italic; margin-bottom:10px;">"그리스도인의 완전은 하나님을 전심으로 사랑하며, 이웃을 사랑하는 것입니다."</p>
+            <p style="font-size:0.75rem; opacity:0.7;">- 존 웨슬리 -</p>
+        </div>
+        <footer>© 라온동행교회 주간 묵상집</footer>
+    </div>
+    <script>
+        const startDate = new Date('2026-03-15');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 묵상은 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+            if(!isInit) window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
