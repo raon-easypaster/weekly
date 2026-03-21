@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "모세의 거절과 하나님의 부르심: 지극히 현실적인 우리를 향한 은총",
+    "scripture": "출애굽기 3:11-4:13",
+    "date": "2026-03-22",
+    "url": "2026/260322daily.html",
+    "fileName": "260322daily.html"
+  },
+  {
     "title": "히어로 모세: 내 능력을 넘어 하나님의 손에 붙들리는 삶",
     "scripture": "출애굽기 2:11-22",
     "date": "2026-03-15",
