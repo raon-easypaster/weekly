@@ -1,7 +1,7 @@
 window.ARCHIVE_DATA = [
   {
-    "title": "모세의 거절과 하나님의 부르심: 지극히 현실적인 우리를 향한 은총",
-    "scripture": "출애굽기 3:11-4:13",
+    "title": "모세가 이르되 - 신을 벗는 경건, 다시 신는 순종",
+    "scripture": "출애굽기 3:3",
     "date": "2026-03-22",
     "url": "2026/260322daily.html",
     "fileName": "260322daily.html"
