@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모세의 거절과 하나님의 부르심: 지극히 현실적인 우리를 향한 은총 - 주간 묵상집</title>
+    <style>
+        :root {
+            --primary: #451a03;
+            --secondary: #92400e;
+            --accent: #f59e0b;
+            --bg: #fcfaf7;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; word-break: keep-all;
+        }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 16px 16px 60px 16px; }
+        header { text-align: center; padding: 30px 20px; background: white; border-radius: 24px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .church-name { font-size: 0.8rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        h1 { font-size: 1.5rem; color: var(--primary); margin: 0 0 10px 0; line-height: 1.3; }
+        .date-range { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; }
+        .main-scripture { display: inline-block; background: #fffbeb; color: var(--secondary); padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; }
+        .tabs-container { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 4px 4px 12px 4px; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 58px; height: 58px; border-radius: 16px; border: 1px solid #eee; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #9ca3af; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        .tab-btn.locked .tab-name, .tab-btn.locked .tab-label { opacity: 0.5; }
+        .tab-label { font-size: 8px; font-weight: 800; opacity: 0.7; }
+        .tab-name { font-size: 1.1rem; font-weight: 900; }
+        .day-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--card-bg); border-radius: 24px; padding: 24px; border-left: 6px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .day-badge { background: #fff7ed; color: #c2410c; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; }
+        .cross-icon { color: #fde68a; font-size: 1.2rem; }
+        .card-title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 12px 0; }
+        .scripture-box { background: #fdfaf3; padding: 14px; border-radius: 16px; font-size: 0.9rem; color: #78350f; font-style: italic; margin-bottom: 20px; border: 1px solid #fef3c7; }
+        .content-section { margin-bottom: 20px; }
+        .content-section label { display: block; font-size: 0.7rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px; }
+        .reflection { font-size: 1.1rem; font-weight: 600; color: #374151; margin: 0; font-style: italic; }
+        .action { font-size: 1rem; color: #4b5563; margin: 0; }
+        .prayer-box { background: #fafafa; padding: 16px; border-radius: 16px; }
+        .prayer-box label { color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; display: block; }
+        .prayer { font-size: 0.85rem; color: #6b7280; font-style: italic; margin: 0; }
+        .wesley-quote { background: var(--primary); color: white; padding: 30px 20px; border-radius: 24px; text-align: center; margin-top: 30px; }
+        footer { text-align: center; padding: 30px 0; color: #9ca3af; font-size: 0.7rem; }
+        @media print { .tabs-container { display: none !important; } .day-content { display: block !important; margin-bottom: 30px; page-break-inside: avoid; } body { background: white; } .container { max-width: none; padding: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="church-name">라온동행교회</span>
+            <h1>모세의 거절과 하나님의 부르심: 지극히 현실적인 우리를 향한 은총</h1>
+            <span class="date-range">2026.3.22 (주일) ~ 2026.3.28 (토)</span>
+            <div class="main-scripture">본문: 출애굽기 3:11-4:13</div>
+        </header>
+        <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">3/22</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">3/23</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">3/24</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">3/25</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">3/26</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">3/27</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">3/28</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+        <div class="contents">
+      <div id="day-content-1" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/22 (주일) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">나를 먼저 찾아오신 선행적 은총</h3>
+          <div class="scripture-box">출애굽기 3:11</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 '내가 누구이기에'라며 자신의 무력함을 고백했습니다. 당신의 삶 속에서 자격 없는 나를 먼저 찾아와주시고 불러주신 하나님의 '선행적 은총'을 경험한 순간은 언제인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루, 내가 가진 조건이나 능력이 아닌 오직 하나님의 사랑 때문에 내가 소중한 존재임을 선포하며 세 번 크게 미소 지으세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">사랑의 주님, 제가 아직 주님을 알지 못할 때부터 저를 택하시고 사랑해 주셔서 감사합니다. 저의 연약함이 주님의 일을 제한하지 않음을 믿으며 오늘을 시작하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-2" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/23 (월) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">내 이름보다 위대한 주님의 이름</h3>
+          <div class="scripture-box">출애굽기 3:13</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 사람들이 하나님의 이름을 물을까 두려워했습니다. 내 능력을 증명하려 애쓰기보다, 내 삶을 통해 드러나야 할 '하나님의 성품(이름)'은 무엇이라고 생각하시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">주변 사람들에게 나를 드러내기보다 '하나님은 참 선하신 분입니다'라는 고백을 대화 중에 자연스럽게 나누어 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 저의 어떠함보다 주님이 누구이신지가 더 중요함을 고백합니다. 제 삶의 현장에서 주님의 거룩한 이름이 저의 성품을 통해 향기로 나타나게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-3" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/24 (화) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">정직한 고백이 여는 성장의 문</h3>
+          <div class="scripture-box">출애굽기 4:1</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세의 의심은 믿음의 결여가 아닌 '성장 중인 믿음'의 모습이었습니다. 현재 당신이 하나님 앞에서 솔직하게 털어놓고 싶은 의심이나 두려움은 무엇인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 기도 시간에는 체면을 차리지 말고, 마음 깊은 곳에 있는 두려움을 하나님께 있는 그대로 일기 쓰듯 적어보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 저의 의심마저도 성장의 과정으로 받아주시는 주님의 넉넉한 품에 감사합니다. 정직한 고백을 통해 더욱 단단한 믿음의 사람으로 성숙하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-4" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/25 (수) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">잠든 은사를 다시 깨우시는 주님</h3>
+          <div class="scripture-box">출애굽기 4:10</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"40년의 세월 동안 잊힌 모세의 언어처럼, 현실에 치여 묻어두었던 당신의 달란트나 열정은 무엇인가요? 하나님께서는 그 은사를 거룩하게(성결) 사용하기 원하십니다."</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">과거에 좋아했거나 잘했던 일 중 하나를 떠올려보고, 그것을 통해 오늘 누군가에게 작은 기쁨을 줄 수 있는 방법을 찾아 실천하세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">하나님, 저에게 주셨던 귀한 재능들을 다시 깨워주소서. 제 개인의 유익이 아니라 주님의 나라와 이웃의 유익을 위해 성결하게 쓰임 받는 도구가 되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-5" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/26 (목) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">안주함을 넘어 '완전한 사랑'으로</h3>
+          <div class="scripture-box">출애굽기 4:13</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 안정적인 삶을 떠나 폭풍 속으로 가고 싶지 않았습니다. 당신의 영적 성장을 가로막는 '현재의 안락함'은 무엇이며, 이를 극복하기 위해 필요한 사랑의 용기는 무엇일까요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">익숙하고 편안한 선택 대신, 조금 불편하더라도 영적으로 유익하거나 남을 배려하는 선택을 오늘 딱 한 가지만 실행해 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 두려움 때문에 뒤로 물러나지 않게 하소서. 주님의 완전한 사랑이 제 안의 모든 두려움을 내쫓고, 사명의 자리를 향해 담대히 나아가게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-6" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/27 (금) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">함께 걷는 길, 사회적 성결</h3>
+          <div class="scripture-box">출애굽기 3:10</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"하나님은 모세 개인의 구원이 아니라 고통받는 이스라엘 백성을 위해 그를 부르셨습니다. 내 신앙이 개인의 평안을 넘어 고통받는 이웃을 향한 '사회적 성결'로 흐르고 있나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">우리 사회의 소외된 이들이나 고통받는 이웃의 소식을 찾아보고, 그들을 위해 간절히 중보기도 하거나 작은 기부를 실천해 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">사회적 성결을 강조하신 주님, 저의 거룩함이 교회 담장 안에 머물지 않기를 원합니다. 세상의 아픔에 공감하며 치유의 통로로 쓰임 받게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-7" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">3/28 (토) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">지극히 현실적인 나를 향한 하나님의 신뢰</h3>
+          <div class="scripture-box">출애굽기 4:12</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세의 합리적인 변명에도 불구하고 하나님은 포기하지 않으셨습니다. '지극히 현실적인' 당신을 여전히 믿어주시고 사명을 맡기시는 하나님의 마음이 느껴지시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">한 주간의 묵상을 마무리하며, '주님, 제가 여기 있습니다. 저를 사용하여 주소서'라는 항복과 결단의 고백을 하나님께 올려드리세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">따뜻하신 주님, 칠 일간의 묵상을 통해 저의 한계보다 주님의 크심을 보게 하시니 감사합니다. 한 주간의 삶을 주님께 온전히 봉헌하며, 늘 동행하여 주소서.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="wesley-quote">
+            <p style="font-style:italic; margin-bottom:10px;">"그리스도인의 완전은 하나님을 전심으로 사랑하며, 이웃을 사랑하는 것입니다."</p>
+            <p style="font-size:0.75rem; opacity:0.7;">- 존 웨슬리 -</p>
+        </div>
+        <footer>© 라온동행교회 주간 묵상집</footer>
+    </div>
+    <script>
+        const startDate = new Date('2026-03-22');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 묵상은 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+            if(!isInit) window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
