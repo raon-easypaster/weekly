@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "잠자는 자들의 첫 열매, 부활의 생명을 연습하는 삶",
+    "scripture": "고린도전서 15:20",
+    "date": "2026-04-05",
+    "url": "2026/260405daily.html",
+    "fileName": "260405daily.html"
+  },
+  {
     "title": "모세가 이르되 - 신을 벗는 경건, 다시 신는 순종",
     "scripture": "출애굽기 3:3",
     "date": "2026-03-22",
