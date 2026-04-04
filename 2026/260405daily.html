@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>잠자는 자들의 첫 열매, 부활의 생명을 연습하는 삶 - 주간 묵상집</title>
+    <style>
+        :root {
+            --primary: #451a03;
+            --secondary: #92400e;
+            --accent: #f59e0b;
+            --bg: #fcfaf7;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; word-break: keep-all;
+        }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 16px 16px 60px 16px; }
+        header { text-align: center; padding: 30px 20px; background: white; border-radius: 24px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .church-name { font-size: 0.8rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        h1 { font-size: 1.5rem; color: var(--primary); margin: 0 0 10px 0; line-height: 1.3; }
+        .date-range { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; }
+        .main-scripture { display: inline-block; background: #fffbeb; color: var(--secondary); padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; }
+        .tabs-container { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 4px 4px 12px 4px; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 58px; height: 58px; border-radius: 16px; border: 1px solid #eee; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #9ca3af; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        .tab-btn.locked .tab-name, .tab-btn.locked .tab-label { opacity: 0.5; }
+        .tab-label { font-size: 8px; font-weight: 800; opacity: 0.7; }
+        .tab-name { font-size: 1.1rem; font-weight: 900; }
+        .day-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--card-bg); border-radius: 24px; padding: 24px; border-left: 6px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .day-badge { background: #fff7ed; color: #c2410c; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; }
+        .cross-icon { color: #fde68a; font-size: 1.2rem; }
+        .card-title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 12px 0; }
+        .scripture-box { background: #fdfaf3; padding: 14px; border-radius: 16px; font-size: 0.9rem; color: #78350f; font-style: italic; margin-bottom: 20px; border: 1px solid #fef3c7; }
+        .content-section { margin-bottom: 20px; }
+        .content-section label { display: block; font-size: 0.7rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px; }
+        .reflection { font-size: 1.1rem; font-weight: 600; color: #374151; margin: 0; font-style: italic; }
+        .action { font-size: 1rem; color: #4b5563; margin: 0; }
+        .prayer-box { background: #fafafa; padding: 16px; border-radius: 16px; }
+        .prayer-box label { color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; display: block; }
+        .prayer { font-size: 0.85rem; color: #6b7280; font-style: italic; margin: 0; }
+        .wesley-quote { background: var(--primary); color: white; padding: 30px 20px; border-radius: 24px; text-align: center; margin-top: 30px; }
+        footer { text-align: center; padding: 30px 0; color: #9ca3af; font-size: 0.7rem; }
+        @media print { .tabs-container { display: none !important; } .day-content { display: block !important; margin-bottom: 30px; page-break-inside: avoid; } body { background: white; } .container { max-width: none; padding: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="church-name">라온동행교회</span>
+            <h1>잠자는 자들의 첫 열매, 부활의 생명을 연습하는 삶</h1>
+            <span class="date-range">2026.4.5 (주일) ~ 2026.4.11 (토)</span>
+            <div class="main-scripture">본문: 고린도전서 15:20</div>
+        </header>
+        <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">4/5</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">4/6</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">4/7</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">4/8</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">4/9</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">4/10</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">4/11</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+        <div class="contents">
+      <div id="day-content-1" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/5 (주일) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">내 삶에 이미 심겨진 선행 은총</h3>
+          <div class="scripture-box">시편 139:7-10</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"방글라데시처럼 척박하고 소망 없어 보이는 내 삶의 자리에도 하나님이 미리 심어두신 '생명의 씨앗(선행 은총)'이 있음을 믿으시나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루, 내 주변에서 무심코 지나쳤던 하나님의 은혜의 흔적을 세 가지 찾아 메모장에 적어보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">주님, 제가 깨닫기도 전에 먼저 찾아와 생명의 씨앗을 심어주셔서 감사합니다. 메마른 땅에서도 일하시는 주님을 신뢰하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-2" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/6 (월) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">첫 열매가 주시는 확신</h3>
+          <div class="scripture-box">고린도전서 15:20</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"예수님이 '첫 열매'가 되셨다는 것은 나의 미래도 주님의 부활에 동참하게 된다는 보증입니다. 이 약속이 오늘 나의 불안을 어떻게 이기게 하나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나를 불안하게 만드는 문제들 옆에 '부활의 주님이 나의 첫 열매이십니다'라고 크게 써서 붙여보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">죽음을 이기시고 부활의 보증 수표가 되어주신 주님, 주님이 얻으신 그 승리가 곧 나의 승리임을 고백하며 담대히 걷게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-3" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/7 (화) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">암기하는 신앙에서 살아내는 신앙으로</h3>
+          <div class="scripture-box">고린도전서 15:14</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"부활을 지식으로만 알고 '단순 암기' 하듯 신앙생활을 하지는 않았나요? 내 삶의 현장에서 부활의 능력이 구체적으로 나타나고 있습니까?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 만나는 사람들에게 '지식'을 전달하기보다, 주님의 '생명력'이 느껴지는 따뜻한 미소와 격려의 말을 건네보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">입술의 고백이 삶의 능력이 되기를 원합니다. 머리로만 아는 예수가 아니라 내 심장에 살아 숨 쉬는 주님을 경험하게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-4" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/8 (수) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">부활의 생명을 '실습'하는 하루</h3>
+          <div class="scripture-box">야고보서 2:22</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"방글라데시 청년들이 반복된 실습으로 커피를 추출했듯, 나는 오늘 '그리스도를 닮아가는 삶'을 몇 번이나 연습하고 있나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 평소에 하기 힘들었던 '작은 희생'이나 '양보'를 한 번만 실천하며 부활의 삶을 실습해 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">서툰 손길로 커피를 내리던 청년들처럼, 저도 부족하지만 매일 사랑을 실습하겠습니다. 저를 주님의 제자로 빚어 주소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-5" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/9 (목) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">성화, 완전한 사랑을 향한 여정</h3>
+          <div class="scripture-box">데살로니가전서 5:23</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"웨슬리가 강조한 '성화'는 어제보다 오늘 더 주님을 사랑하는 것입니다. 나의 성품과 언어는 부활하신 주님을 닮아 거룩해지고 있나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나의 습관 중 주님을 닮지 못한 부정적인 말이나 불평 한 가지를 정해, 오늘 하루는 절대 입 밖으로 내지 않기로 결단해 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">거룩(Holiness)은 멀리 있는 것이 아니라 제 일상 속에 있음을 믿습니다. 온전한 사랑을 향해 한 걸음 더 나아가게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-6" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/10 (금) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">사회적 성결: 고통받는 이웃 속에 계신 주님</h3>
+          <div class="scripture-box">마태복음 25:40</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"방글라데시의 장애 아이들 속에 계셨던 주님을 기억합니다. 내 주변에 소외되고 고통받는 이들을 향한 '사회적 성결'을 어떻게 실천할 수 있을까요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">도움이 필요한 이웃이나 복지 단체에 작은 기부를 하거나, 주변의 어려운 지인에게 따뜻한 차 한 잔을 대접해 보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">나만의 영성을 넘어 이웃의 아픔에 공감하는 사회적 성결의 삶을 살게 하소서. 고통받는 이들의 눈물 속에서 주님을 뵙게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-7" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">4/11 (토) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">우리가 바로 살아있는 교회입니다</h3>
+          <div class="scripture-box">골로새서 1:18</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"교회는 건물이나 프로그램이 아니라 '부활의 생명이 뛰는 곳'입니다. 나의 가정과 직장은 나를 통해 살아있는 교회로 세워지고 있나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">내가 머무는 자리를 축복하며, </p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">부활하신 주님이 제 삶의 주인 되심을 선포합니다. 라온동행교회 모든 성도가 각자의 자리에서 생명이 꿈동이 치는 교회가 되게 하소서.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="wesley-quote">
+            <p style="font-style:italic; margin-bottom:10px;">"그리스도인의 완전은 하나님을 전심으로 사랑하며, 이웃을 사랑하는 것입니다."</p>
+            <p style="font-size:0.75rem; opacity:0.7;">- 존 웨슬리 -</p>
+        </div>
+        <footer>© 라온동행교회 주간 묵상집</footer>
+    </div>
+    <script>
+        const startDate = new Date('2026-04-05');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 묵상은 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+            if(!isInit) window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
