@@ -1,12 +1,5 @@
 window.ARCHIVE_DATA = [
   {
-    "title": "준비 된 동역자 (모세 5)",
-    "scripture": "출애굽기 4:27-31",
-    "date": "2026-04-12",
-    "url": "2026/260412daily.html",
-    "fileName": "260412daily.html"
-  },
-  {
     "title": "잠자는 자들의 첫 열매, 부활의 생명을 연습하는 삶",
     "scripture": "고린도전서 15:20",
     "date": "2026-04-05",
