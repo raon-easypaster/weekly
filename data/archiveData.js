@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "슬픈 생각은 틀린 적이 (모세 6)",
+    "scripture": "출애굽기 5:1, 2, 21",
+    "date": "2026-04-19",
+    "url": "2026/20260419daily.html",
+    "fileName": "20260419daily.html"
+  },
+  {
     "title": "준비 된 동역자 (모세 5)",
     "scripture": "출애굽기 4:27-31",
     "date": "2026-04-12",
