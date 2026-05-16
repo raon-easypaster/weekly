@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모세의 지팡이 (모세 8)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="출애굽기 4장 2절-4절">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">5/17</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">5/18</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">5/19</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">5/20</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">5/21</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">5/22</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">5/23</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 17일 주일요일 | 출애굽기 4장 2절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 17일 주일요일  
+                오늘의 본문: 출애굽기 4장 2절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">하나님은 모세의 손에 있는 것이 무엇인지 물으시며 그의 평범한 일상에 관심을 가지십니다. 우리 손에 들려진 작은 것들이 하나님의 도구가 될 수 있음을 묵상해 봅시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>맛테(Matte): 지팡이 또는 한 사람의 권위와 정체성을 상징하는 도구.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 하나님의 거룩한 임재가 특별한 성물에만 깃드는 것이 아니라 성도의 평범한 일상 속으로 찾아오심을 믿습니다. 모세의 낡은 지팡이가 하나님의 부르심을 받는 순간 거룩한 사명의 도구로 구별되듯, 우리의 소박한 삶도 하나님의 손에 들릴 때 성결한 삶의 도구가 됩니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "현재 나의 손에 들려 있는 재능, 직업, 환경 중 하나님께 드릴 수 있는 것은 무엇입니까?"</div>
+                실천 방안: 오늘 내가 사용하는 물건이나 도구 하나를 정해 이것이 하나님의 영광을 위해 사용되기를 짧게 기도합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 제가 가진 평범한 지팡이를 주님 앞에 내어놓습니다. 저의 보잘것없는 재능과 일상도 주님께서 사용하시면 거룩한 통로가 될 줄 믿습니다.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 18일 월요일 | 출애굽기 4장 3절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 18일 월요일  
+                오늘의 본문: 출애굽기 4장 3절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">하나님은 모세에게 지팡이를 땅에 던지라고 하십니다. 자신의 생존 수단이자 권위였던 지팡이를 내려놓는 항복의 과정을 통해 기적이 시작됨을 가르쳐 줍니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학에서 성결의 은혜는 전적인 자기 부인을 전제로 합니다. 모세가 지팡이를 던진 것은 자신의 경험과 능력을 포기하고 하나님의 주권을 인정하는 항복의 행위입니다. 우리가 나의 의지와 자아를 십자가 앞에 던질 때 비로소 하나님의 능력이 우리를 통해 나타나기 시작합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내가 아직도 손에서 놓지 못하고 끝까지 고집하며 붙들고 있는 나의 의는 무엇입니까?"</div>
+                실천 방안: 오늘 하루 동안 내 생각대로 되지 않을 때 화를 내기보다 주님의 주권을 먼저 인정하며 잠시 멈춥니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">하나님, 나의 경험과 권리를 하나님 앞에 던집니다. 나를 주장하던 자아를 내려놓고 오직 하나님의 인도하심만을 신뢰하게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 19일 화요일 | 출애굽기 4장 20절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 19일 화요일  
+                오늘의 본문: 출애굽기 4장 20절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">성경은 더 이상 모세의 지팡이가 아닌 하나님의 지팡이라고 부릅니다. 지팡이의 재질이 변한 것이 아니라 그 주인이 하나님으로 바뀐 것이 핵심입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>맛테 하엘로힘(Matte ha-Elohim): 모세의 지팡이에서 소유권이 이전된 상태인 하나님의 지팡이.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결의 삶은 소유권의 변화입니다. 내가 내 인생의 주인 노릇 하던 자리에서 내려와 하나님께 삶의 운전대를 맡길 때 우리는 하나님의 지팡이로서의 권능을 경험합니다. 이것이 바로 중생을 넘어 온전한 헌신으로 나아가는 성도의 모습입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 인생의 지팡이는 나의 것입니까, 아니면 하나님의 것입니까?"</div>
+                실천 방안: 나의 일터나 가정에서 내가 주인 행세를 하려 했던 순간들을 회개하며 하나님의 통치를 선포합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">저의 인생을 하나님의 지팡이라고 불러주시니 감사합니다. 제 삶의 소유권이 주님께 있음을 매 순간 고백하며 살아가게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 20일 수요일 | 출애굽기 4장 4절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 20일 수요일  
+                오늘의 본문: 출애굽기 4장 4절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">뱀이 된 지팡이의 꼬리를 잡으라는 말씀에 순종할 때 지팡이는 다시 돌아왔습니다. 기적의 능력은 지팡이 자체가 아니라 하나님의 손으로부터 나옴을 기억합시다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">신유의 은혜를 구하는 성결교인들은 치유의 수단이나 상징에 현혹되어서는 안 됩니다. 지팡이는 단지 하나님의 임재가 나타나는 통로일 뿐입니다. 우리는 보이는 상징을 우상화하지 말고 그 너머에서 역사하시는 살아계신 하나님의 능력을 바라보아야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 하나님의 능력보다 종교적인 물건이나 형식, 혹은 사람을 더 의지하고 있지는 않습니까?"</div>
+                실천 방안: 오늘 성경책이나 십자가 목걸이 같은 물건 자체에 마음을 두기보다 그 안에 담긴 말씀과 정신을 묵상합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">상징에 매몰되지 않고 오직 하나님 한 분만을 온전히 의지하길 원합니다. 도구가 아닌 도구를 쥐신 하나님의 손을 바라보게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 21일 목요일 | 민수기 17장 8절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 21일 목요일  
+                오늘의 본문: 민수기 17장 8절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">죽은 나무인 아론의 지팡이에서 싹이 나고 열매가 맺혔습니다. 마른 막대기 같은 우리 영혼에 생명을 불어넣으시는 분은 오직 하나님이십니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안의 관점에서 구원은 죽은 영혼이 다시 살아나는 중생의 신비입니다. 아무 능력이 없는 마른 막대기에서 살구 열매가 맺히듯, 죄로 죽었던 우리를 성령의 능력으로 거룩한 열매를 맺는 존재로 변화시키시는 하나님의 신비를 찬양합시다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 삶 속에서 도저히 소망이 보이지 않는 마른 막대기 같은 부분은 어디입니까?"</div>
+                실천 방안: 절망적인 상황에 놓인 주변 사람에게 하나님의 생명이 함께하시길 축복하며 격려의 메시지를 보냅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">생명의 주님, 마른 막대기 같은 저의 영혼에 성령의 비를 내려 주셔서 거룩한 열매를 맺는 생명의 삶을 살게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 22일 금요일 | 민수기 17장 8절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 22일 금요일  
+                오늘의 본문: 민수기 17장 8절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">지팡이에서 맺힌 살구 열매는 하나님이 깨어 계셔서 언약을 지키신다는 증거입니다. 우리를 지키시는 신실하신 하나님을 신뢰합시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>샤케드(Shaked): 살구 열매. 깨어 있다, 지키다라는 뜻의 샤카드(Shakad)와 어원이 같음.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회 신앙은 재림의 소망을 품고 깨어 있는 삶을 강조합니다. 하나님께서 친히 깨어 계셔서 우리를 지키시듯, 우리 또한 하나님의 언약을 신뢰하며 거룩한 성도로서 깨어 있는 삶을 살아야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "하나님이 나를 지키고 계신다는 신실함을 믿고 오늘 내가 내려놓아야 할 걱정은 무엇입니까?"</div>
+                실천 방안: 잠들기 전 하나님이 오늘 나를 어떻게 지켜주셨는지 세 가지를 기록하며 감사의 인사를 드립니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">신실하신 하나님, 저보다 더 저를 아끼시며 깨어 지키시는 은혜에 감사합니다. 저 또한 영적으로 깨어 주님의 재림을 준비하는 성도가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 23일 토요일 | 출애굽기 4장 20절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 23일 토요일  
+                오늘의 본문: 출애굽기 4장 20절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">지팡이는 모셔두는 성물이 아니라 광야를 걸어가는 실천의 도구입니다. 이제 우리는 하나님의 지팡이가 되어 세상 속으로 나아가야 합니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결은 교회 안에만 머무는 것이 아니라 세상 속에서 실천되는 사랑입니다. 우리가 하나님의 지팡이가 된다는 것은 가난하고 소외된 자들을 품으셨던 예수를 본받아 삶의 현장에서 정직과 사랑을 실천하는 작은 예수로 살아가는 것을 의미합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 오늘 누구의 손을 잡아주는 따뜻한 하나님의 지팡이가 되어줄 수 있겠습니까?"</div>
+                실천 방안: 내 주변의 연약한 이웃이나 동료를 위해 구체적으로 도울 수 있는 작은 행동 하나를 실천합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 저를 주님의 지팡이로 사용하여 주옵소서. 세상 속에서 소외된 이들의 위로가 되고 그리스도의 향기를 전하는 신실한 자녀가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-05-17');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
