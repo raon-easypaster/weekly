@@ -1,5 +1,19 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "모세의 지팡이 (모세 8)",
+    "scripture": "출애굽기 4장 2절",
+    "date": "2026-05-17",
+    "url": "2026/260517daily.html",
+    "fileName": "260517daily.html"
+  },
+  {
+    "title": "우리 힘써 하나님을 알자",
+    "scripture": "출애굽기 5:22-23",
+    "date": "2026-05-10",
+    "url": "2026/260510daily.html",
+    "fileName": "260510daily.html"
+  },
+  {
     "title": "슬픈 생각은 틀린 적이 (모세 6)",
     "scripture": "출애굽기 5:1, 2, 21",
     "date": "2026-04-19",
