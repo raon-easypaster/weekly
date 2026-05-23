@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>260524 출애굽기 12장 21절a 모세의 이르되 (모세 9)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="출애굽기 12:21a">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">5/23</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">5/24</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">5/25</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">5/26</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">5/27</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">5/28</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">5/29</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 23일 주일요일 | 출애굽기 12:21a</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 23일 주일요일  
+                오늘의 본문: 출애굽기 12:21a
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">40년 동안 미디안 언어와 문화에 익숙해진 모세가 다시 애굽으로 돌아가는 것은 우주비행사의 재진입처럼 어려운 일이었습니다. 그러나 하나님은 그 낯선 두려움을 뚫고 우리를 다시 사명의 자리로 부르십니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 하나님의 선행 은총이 우리를 먼저 부르심을 믿습니다. 모세가 과거의 실패와 낯선 환경에 대한 두려움을 뚫고 애굽으로 향한 것은 자신의 힘이 아닌 부르시는 하나님의 은혜에 응답한 것입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "과거의 상처나 실패 때문에 다시 돌아가기 두려운 나만의 애굽이나 사명의 자리는 어디입니까?"</div>
+                실천 방안: 오늘 하루 내가 피하고 싶었던 익숙하고도 낯선 책임의 자리를 향해 기도로 한 걸음 내디뎌 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 재진입의 두려움을 겪는 선교사님들처럼 저 또한 사명의 자리에서 겪는 낯섦을 주님의 은혜로 이겨내게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 24일 월요일 | 출애굽기 4:10</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 24일 월요일  
+                오늘의 본문: 출애굽기 4:10
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 스스로 입이 뻣뻣하고 혀가 둔한 자라고 고백하며 자신의 언어적 한계를 두려워했습니다. 하나님은 우리가 완벽할 때가 아니라 자신의 연약함을 인정하며 하나님을 의지할 때 비로소 일하기 시작하십니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학에서 성결의 삶은 자신의 무능력을 철저히 깨닫고 하나님의 전적인 도움을 구하는 겸손에서 시작됩니다. 나의 부족함은 하나님의 능력이 머무는 통로가 됩니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "사명을 감당하기에 나의 능력이 부족하다고 느껴져 주저하고 있는 일은 무엇입니까?"</div>
+                실천 방안: 내 지혜와 말재주를 의지하기보다 성령님의 인도하심을 구하며 오늘 만나는 사람들에게 따뜻한 말을 건넵니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">입술이 둔한 모세를 부르신 주님, 저의 부족함도 주님의 거룩한 도구로 사용하여 주옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 25일 화요일 | 출애굽기 6:9</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 25일 화요일  
+                오늘의 본문: 출애굽기 6:9
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세가 용기를 내어 전했지만 백성들은 마음의 상함 때문에 듣지 않았습니다. 아홉 번의 재앙은 모세에게 시련이 아니라 하나님의 완벽한 타이밍을 기다리게 하시는 성화의 훈련 과정이었습니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">존 웨슬리는 은혜가 한순간의 결단으로 완성되지 않고 점진적으로 우리를 빚어간다고 가르쳤습니다. 모세가 겪은 거절과 시련은 그를 온전한 지도자로 세워가시는 하나님의 점진적 성화 과정입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "최근 내가 겪은 실패나 거절의 시간들이 나를 어떻게 성장시키고 있다고 생각합니까?"</div>
+                실천 방안: 일이 뜻대로 풀리지 않을 때 조급해하지 않고 하나님의 섭리를 신뢰하며 오늘의 예배를 정성껏 드립니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">실패를 좌절로 끝내지 않고 저를 더욱 거룩하게 빚어가시는 하나님의 손길을 신뢰하게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 26일 수요일 | 출애굽기 12:21</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 26일 수요일  
+                오늘의 본문: 출애굽기 12:21
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세가 아홉 번의 재앙을 통해 하나님의 능력을 확인했듯, 우리 가족이 겪은 질병과 아픔의 시간들도 원망이 아닌 하나님의 사랑을 깨닫는 시간이 되어야 합니다. 고통은 하나님께 시선을 고정하게 하는 은혜의 통로입니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회의 사중복음 중 신유는 단순히 병 고침만을 의미하지 않습니다. 질병과 고난 속에서 하나님의 마음을 깊이 깨닫고 그분의 주권을 온전히 인정하는 성결한 신앙으로의 초대를 포함합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "육체적, 정신적 고통의 시간을 지날 때 내가 붙들어야 할 하나님의 약속은 무엇입니까?"</div>
+                실천 방안: 가정의 환우들이나 어려움을 겪는 지체들에게 하나님의 위로와 섭리가 전해지도록 구체적인 중보기도를 합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">질병의 고통 중에서도 우리와 함께 아파하시는 하나님의 마음을 느끼며 주님만 바라보게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 27일 목요일 | 출애굽기 12:21</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 27일 목요일  
+                오늘의 본문: 출애굽기 12:21
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세가 말의 권위를 가진 이유는 학위나 양적 성공 때문이 아니라 하나님의 말씀을 온전히 전했기 때문입니다. 사명자는 자신의 생각을 관철시키는 자가 아니라 하나님의 말씀을 삶으로 해석하여 전하는 자입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>Amar: 이르되 혹은 말하다라는 뜻으로, 자신의 권위가 아닌 말씀을 주신 하나님의 권위에 의지하여 선포함을 의미합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회 정체성은 세상의 스펙이나 권력이 아닌 오직 성경의 권위 위에 세워집니다. 사명자는 하나님의 말씀을 살아내어 그 삶의 증거로 복음의 권위를 나타내야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 사람들에게 인정받기 위해 세상의 권위를 찾고 있습니까, 아니면 말씀의 권위를 구하고 있습니까?"</div>
+                실천 방안: 내가 운영하는 일터나 가정이 나의 성공을 자랑하는 곳이 아니라 복음을 전하는 플랫폼이 되도록 작은 봉사를 실천합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">세상의 성공 기준에 휘둘리지 않고 오직 주님의 말씀에만 반응하는 참된 제자가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 28일 금요일 | 출애굽기 12:21-22</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 28일 금요일  
+                오늘의 본문: 출애굽기 12:21-22
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세가 선포한 유월절 규례는 죽음의 재앙을 이기는 생명의 길이었습니다. 문설주에 발린 어린 양의 피는 우리를 위해 십자가에서 희생되신 예수 그리스도의 보혈을 예표하는 복음의 핵심입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>Pesach: 유월절 혹은 넘어가다라는 뜻으로, 어린 양의 피를 보고 심판의 사자가 그 집을 지나쳐 구원받았음을 뜻합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">중생의 은혜는 유월절 어린 양이신 그리스도의 보혈을 믿음으로 우리 영혼에 바를 때 주어집니다. 이 보혈의 공로만이 우리를 모든 죄에서 깨끗하게 하며 거룩한 삶으로 인도합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "오늘 나의 마음과 가정의 문설주에 예수 그리스도의 보혈이 온전히 발려 있음을 확신합니까?"</div>
+                실천 방안: 예수 그리스도의 십자가 고난을 묵상하며 죄에서 자유케 하신 구원의 기쁨을 가족과 함께 나눕니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리의 유월절 양 되신 그리스도의 보혈로 우리 가정을 덮어 주시고 모든 악한 것에서 지켜 주옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 5월 29일 토요일 | 출애굽기 12:21</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 5월 29일 토요일  
+                오늘의 본문: 출애굽기 12:21
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 두려움을 뚫고 하나님의 명령에 순종하여 마지막 담판을 준비했습니다. 사명은 내 욕심과 생각을 내려놓고 내 안에 오직 그리스도만 사시게 할 때 비로소 온전히 감당할 수 있습니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안이 추구하는 완전 성화의 목표는 자아의 중심성이 사라지고 하나님의 사랑이 마음을 온전히 지배하는 상태입니다. 내가 죽어야 내 안의 그리스도가 온전히 나타납니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "오늘 내가 내려놓아야 할 나의 욕심이나 고집은 무엇이며, 어떻게 그리스도만 드러낼 수 있을까요?"</div>
+                실천 방안: 나의 권리를 주장하고 싶은 순간에 침묵하며 주님이 기뻐하시는 이타적인 선택을 한 가지 실행합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 저는 죽고 오직 제 안에 그리스도만 사셔서 제 삶이 복음을 선포하는 통로가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-05-23');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
