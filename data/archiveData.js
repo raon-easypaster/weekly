@@ -2,9 +2,9 @@ window.ARCHIVE_DATA = [
   {
     "title": "260524 출애굽기 12장 21절a 모세의 이르되 (모세 9)",
     "scripture": "출애굽기 12:21a",
-    "date": "2026-05-23",
-    "url": "2026/260523daily.html",
-    "fileName": "260523daily.html"
+    "date": "2026-05-24",
+    "url": "2026/260524daily.html",
+    "fileName": "260524daily.html"
   },
   {
     "title": "모세의 지팡이 (모세 8)",
