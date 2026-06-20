@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "통통한 삶(모세시리즈 11)",
+    "scripture": "출애굽기 33장 11절",
+    "date": "2026-06-21",
+    "url": "2026/260621daily.html",
+    "fileName": "260621daily.html"
+  },
+  {
     "title": "너는 왜? (모세 10)",
     "scripture": "출애굽기 14:10-18",
     "date": "2026-06-14",
