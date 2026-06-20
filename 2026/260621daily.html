@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>통통한 삶(모세시리즈 11)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="출애굽기 33장 11절, 민수기 7장 89절">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">6/21</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">6/22</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">6/23</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">6/24</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">6/25</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">6/26</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">6/27</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 21일 주일요일 | 출애굽기 33장 11절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 21일 주일요일  
+                오늘의 본문: 출애굽기 33장 11절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세의 광야 40년은 단순한 방황의 시간이 아니라 하나님과 끊임없이 소통한 대화의 장이었습니다. 우리 인생의 광야도 하나님과의 대화로 가득 채울 때 의미가 생깁니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>다바르(Dabar): 공식적이고 명확하게 말씀을 선포할 때 쓰이는 단어로 권위 있는 방향을 제시합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학에서 하나님의 말씀은 우리를 구원으로 인도하는 은총의 수단입니다. 하나님은 다바르를 통해 우리에게 거룩한 사명을 부여하시고 삶의 분명한 방향을 설정해 주십니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 인생의 광야 같은 시간 속에서 나는 불평을 쏟아내고 있습니까, 아니면 하나님의 말씀을 구하고 있습니까?"</div>
+                실천 방안: 오늘 하루 중 5분 동안은 휴대전화를 내려놓고 하나님이 내 삶에 주시는 방향이 무엇인지 묵상해 보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 고단한 광야 같은 일상 속에서도 주님의 음성에 귀 기울이며 하나님과의 대화로 하루를 채우는 통통한 삶이 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 22일 월요일 | 출애굽기 33장 11절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 22일 월요일  
+                오늘의 본문: 출애굽기 33장 11절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">하나님은 위엄 있는 왕으로서 명령하시지만 동시에 곁에 있는 친구처럼 친밀하게 설명해 주시는 분입니다. 이 두 가지 소통 방식이 우리를 온전하게 합니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>아마르(Amar): 친구가 친구에게 말하듯 편안하고 일상적인 대화를 나눌 때 사용하는 단어입니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 하나님을 두려운 심판주로만 보지 않고 우리와 동행하시는 인격적인 분으로 고백합니다. 주님은 아마르의 대화를 통해 우리 내면을 부드럽게 만지시고 변화시키십니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 하나님을 엄격한 명령자로만 대하고 있습니까, 아니면 일상을 나누는 친밀한 동행자로 대하고 있습니까?"</div>
+                실천 방안: 오늘 겪은 사소한 기쁨이나 슬픔 한 가지를 친구에게 말하듯 주님께 솔직하게 고백해 보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">왕이신 주님의 명령에 순종하면서도 친구 되신 주님과 친밀하게 대화하며 주님의 마음을 깊이 알아가는 은혜를 허락하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 23일 화요일 | 출애굽기 33장 11절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 23일 화요일  
+                오늘의 본문: 출애굽기 33장 11절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">성경은 하나님이 모세와 대면하여 말씀하셨다고 기록합니다. 이는 숨김이나 거리낌 없이 투명하게 소통하며 교제하는 특별한 관계를 의미합니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>파님 엘-파님(Panim el-Panim): 얼굴을 얼굴에 대하여라는 뜻으로 숨김없는 친밀함과 직접적인 소통을 가리킵니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">하나님과 얼굴을 대면하는 삶은 성결의 핵심입니다. 죄는 하나님과 우리 사이를 가로막지만 은혜는 얼굴과 얼굴을 마주하게 하여 우리를 주님의 형상으로 거룩하게 변화시킵니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "하나님 앞에 나아갈 때 내 마음의 비밀이나 숨기고 싶은 모습이 있지는 않습니까?"</div>
+                실천 방안: 거울을 보며 내 얼굴을 살피듯 내 영혼의 상태를 정직하게 하나님 앞에 내어놓는 기도를 드리세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 가식과 포장을 벗어버리고 주님 앞에 투명하게 서기를 원합니다. 대면하여 말씀하시는 주님의 빛 아래에서 제 영혼이 성결케 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 24일 수요일 | 출애굽기 33장 11절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 24일 수요일  
+                오늘의 본문: 출애굽기 33장 11절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">처음에는 부르심을 거절했던 모세였지만 40년의 세월을 하나님과 함께 걸으며 깊은 신뢰를 쌓았습니다. 하나님과의 친밀함은 공유된 경험 속에서 자라납니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결은 단번에 이루어지는 은혜이기도 하지만 매일 주님과 동행하며 깊어지는 점진적인 과정이기도 합니다. 모세가 쌓아온 시간처럼 우리도 주님과의 신뢰를 쌓아가야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내가 하나님과 함께 걸어온 지난 시간들 속에서 가장 기억에 남는 소통의 순간은 언제입니까?"</div>
+                실천 방안: 지난 신앙 여정에서 하나님이 내 기도에 응답하셨던 사건 세 가지를 기록하며 감사를 표현해 보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">의심과 두려움으로 주춤거렸던 저를 기다려 주시고 동행해 주신 주님, 남은 평생도 주님과 함께 걸으며 더 깊은 신뢰의 관계가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 25일 목요일 | 민수기 7장 89절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 25일 목요일  
+                오늘의 본문: 민수기 7장 89절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 하나님의 말씀을 듣기 위해서뿐만 아니라 자신의 마음을 전하기 위해서도 하나님께 나아갔습니다. 진정한 대화는 서로가 서로에게 할 말이 있는 관계입니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 기도를 영혼의 호흡으로 강조합니다. 호흡이 들숨과 날숨으로 이루어지듯 신앙생활은 하나님의 말씀을 듣고 우리의 삶을 응답으로 드리는 쌍방향 소통입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 일방적으로 요구하기만 합니까, 아니면 나의 솔직한 감정과 생각을 주님과 나누고 있습니까?"</div>
+                실천 방안: 오늘 기도할 때는 내 요구사항을 말하기 전에 지금 내 마음의 기분을 주님께 이야기하는 시간을 먼저 가져보세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 제 목소리를 듣기 원하시는 주님의 마음을 깨닫습니다. 제 삶의 소소한 이야기들까지 주님께 들려드리는 기쁨을 누리게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 26일 금요일 | 민수기 7장 89절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 26일 금요일  
+                오늘의 본문: 민수기 7장 89절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">과거에는 중보자 모세만이 누렸던 대화의 특권이 이제는 예수 그리스도를 통해 우리 모두의 것이 되었습니다. 우리는 은혜의 보좌 앞으로 담대히 나아갈 수 있습니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>로고스(Logos): 태초에 계셨던 말씀이며 우리와 소통하기 위해 육신을 입고 오신 예수 그리스도를 의미합니다.</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 신학은 만인제사장직을 소중히 여깁니다. 그리스도의 보혈로 성소의 휘장이 찢겼기에 우리는 더 이상 매개자 없이 하나님과 직접 소통하며 성화의 은총을 입을 수 있습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "예수님이 열어놓으신 이 담대한 특권을 나는 얼마나 자주 사용하고 있습니까?"</div>
+                실천 방안: 가장 바쁜 시간 중에 잠시 멈춰서서 지금 내 곁에 계신 주님께 담대하게 도움을 요청하는 기도를 짧게 드리세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">예수 그리스도의 공로로 하나님께 직접 나아갈 길을 열어주시니 감사합니다. 주저하지 않고 매 순간 은혜의 보좌 앞에 엎드리는 믿음을 주옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 6월 27일 토요일 | 출애굽기 33장 11절</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 6월 27일 토요일  
+                오늘의 본문: 출애굽기 33장 11절
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">누군가와 계속 대화하면 그를 닮아가듯, 우리가 매일 주님과 대화하면 주님의 성품을 닮아갑니다. 이것이 바로 통통한 삶이 가져다주는 성화의 열매입니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결은 하나님과의 끊임없는 교제를 통해 우리 안에 그리스도의 형상이 회복되는 것입니다. 일상의 모든 순간이 하나님과 통할 때 우리 삶에는 성결의 향기가 나타납니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "주님과 대화하며 살아가는 요즘, 내 말과 행동에서 주님을 닮은 모습이 조금씩 나타나고 있습니까?"</div>
+                실천 방안: 오늘 하루를 마무리하며 주님과 나누었던 대화들을 복기해보고 내일은 더 주님을 닮은 모습으로 살기를 결단하세요.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">쉬지 않고 기도하며 주님과 소통함으로 제 속사람이 날마다 주님을 닮아 성결해지게 하시고 삶의 현장에서 작은 예수로 살게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-06-21');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
