@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "광야의 짐, 함께 짊어지는 사명",
+    "scripture": "민수기 11장 14절",
+    "date": "2026-06-28",
+    "url": "2026/260628daily.html",
+    "fileName": "260628daily.html"
+  },
+  {
     "title": "통통한 삶(모세시리즈 11)",
     "scripture": "출애굽기 33장 11절",
     "date": "2026-06-21",
