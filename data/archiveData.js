@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "모세가 손을 들면",
+    "scripture": "출애굽기 17:8-13",
+    "date": "2026-07-05",
+    "url": "2026/260705daily.html",
+    "fileName": "260705daily.html"
+  },
+  {
     "title": "광야의 짐, 함께 짊어지는 사명",
     "scripture": "민수기 11장 14절",
     "date": "2026-06-28",
