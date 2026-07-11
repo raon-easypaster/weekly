@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>평안히 가도록 (출애굽기 18:13–23, 모세 시리즈 14) - 주간 묵상집</title>
+    <style>
+        :root {
+            --primary: #451a03;
+            --secondary: #92400e;
+            --accent: #f59e0b;
+            --bg: #fcfaf7;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; word-break: keep-all;
+        }
+        .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 16px 16px 60px 16px; }
+        header { text-align: center; padding: 30px 20px; background: white; border-radius: 24px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .church-name { font-size: 0.8rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        h1 { font-size: 1.5rem; color: var(--primary); margin: 0 0 10px 0; line-height: 1.3; }
+        .date-range { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; }
+        .main-scripture { display: inline-block; background: #fffbeb; color: var(--secondary); padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; }
+        .tabs-container { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 4px 4px 12px 4px; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 58px; height: 58px; border-radius: 16px; border: 1px solid #eee; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #9ca3af; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        .tab-btn.locked .tab-name, .tab-btn.locked .tab-label { opacity: 0.5; }
+        .tab-label { font-size: 8px; font-weight: 800; opacity: 0.7; }
+        .tab-name { font-size: 1.1rem; font-weight: 900; }
+        .day-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .day-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--card-bg); border-radius: 24px; padding: 24px; border-left: 6px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .day-badge { background: #fff7ed; color: #c2410c; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; }
+        .cross-icon { color: #fde68a; font-size: 1.2rem; }
+        .card-title { font-size: 1.3rem; font-weight: 800; color: #111; margin: 0 0 12px 0; }
+        .scripture-box { background: #fdfaf3; padding: 14px; border-radius: 16px; font-size: 0.9rem; color: #78350f; font-style: italic; margin-bottom: 20px; border: 1px solid #fef3c7; }
+        .content-section { margin-bottom: 20px; }
+        .content-section label { display: block; font-size: 0.7rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px; }
+        .reflection { font-size: 1.1rem; font-weight: 600; color: #374151; margin: 0; font-style: italic; }
+        .action { font-size: 1rem; color: #4b5563; margin: 0; }
+        .prayer-box { background: #fafafa; padding: 16px; border-radius: 16px; }
+        .prayer-box label { color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 4px; display: block; }
+        .prayer { font-size: 0.85rem; color: #6b7280; font-style: italic; margin: 0; }
+        .wesley-quote { background: var(--primary); color: white; padding: 30px 20px; border-radius: 24px; text-align: center; margin-top: 30px; }
+        footer { text-align: center; padding: 30px 0; color: #9ca3af; font-size: 0.7rem; }
+        @media print { .tabs-container { display: none !important; } .day-content { display: block !important; margin-bottom: 30px; page-break-inside: avoid; } body { background: white; } .container { max-width: none; padding: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="church-name">라온동행교회</span>
+            <h1>평안히 가도록 (출애굽기 18:13–23, 모세 시리즈 14)</h1>
+            <span class="date-range">2026.7.12 (주일) ~ 2026.7.18 (토)</span>
+            <div class="main-scripture">본문: 출애굽기 18:13–23</div>
+        </header>
+        
+        <div class="discussion-box" style="background: #fffdf9; border: 1px solid #fdecce; border-radius: 20px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+                <span style="font-size: 1.25rem;">💬</span>
+                <span style="font-size: 0.9rem; font-weight: 800; color: #451a03; tracking: -0.025em; font-family: sans-serif;">주간 공동체 나눔 질문</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <div style="display: flex; gap: 12px; align-items: start; background: white; padding: 12px 14px; border-radius: 12px; border: 1px solid #f9f5ed;">
+                    <span style="color: #c2410c; font-weight: bold; font-family: monospace; font-size: 1.1rem; line-height: 1;">01</span>
+                    <p style="margin: 0; font-size: 0.95rem; color: #374151; font-weight: 500; line-height: 1.5; word-break: keep-all;">모세처럼 하나님의 일을 열심히 감당하면서도 내 한계를 인정하지 못해 지치거나, 모든 일을 스스로 하려다 '자기 의'에 빠졌던 적이 있다면 서로 나누어 봅시다.</p>
+                </div>
+                
+                <div style="display: flex; gap: 12px; align-items: start; background: white; padding: 12px 14px; border-radius: 12px; border: 1px solid #f9f5ed;">
+                    <span style="color: #c2410c; font-weight: bold; font-family: monospace; font-size: 1.1rem; line-height: 1;">02</span>
+                    <p style="margin: 0; font-size: 0.95rem; color: #374151; font-weight: 500; line-height: 1.5; word-break: keep-all;">이드로가 권면한 리더의 자격인 '하일(용기, 도덕적 고결함)'과 '에메트(신실함과 진실함)'는 세상의 스펙과 어떻게 다를까요? 우리 삶에서 이러한 성품의 능력이 어떻게 드러날 수 있을지 이야기해 봅시다.</p>
+                </div>
+                
+                <div style="display: flex; gap: 12px; align-items: start; background: white; padding: 12px 14px; border-radius: 12px; border: 1px solid #f9f5ed;">
+                    <span style="color: #c2410c; font-weight: bold; font-family: monospace; font-size: 1.1rem; line-height: 1;">03</span>
+                    <p style="margin: 0; font-size: 0.95rem; color: #374151; font-weight: 500; line-height: 1.5; word-break: keep-all;">목회자나 소그룹 리더, 혹은 가정에서 지치고 무거운 짐을 혼자 지고 있는 지체들을 위해 우리는 어떻게 '이드로'처럼 지혜로운 멘토와 돕는 동역자가 되어 줄 수 있을지 나누어 봅시다.</p>
+                </div>
+                
+                <div style="display: flex; gap: 12px; align-items: start; background: white; padding: 12px 14px; border-radius: 12px; border: 1px solid #f9f5ed;">
+                    <span style="color: #c2410c; font-weight: bold; font-family: monospace; font-size: 1.1rem; line-height: 1;">04</span>
+                    <p style="margin: 0; font-size: 0.95rem; color: #374151; font-weight: 500; line-height: 1.5; word-break: keep-all;">라온동행교회 공동체가 한 사람의 어깨에만 의존하지 않고, 모두가 각자의 분량을 기쁘게 나누어 지며 '참된 샬롬'을 이루기 위해 내가 오늘 구체적으로 동참할 수 있는 역할은 무엇인지 나누어 봅시다.</p>
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">7/12</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">7/13</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">7/14</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">7/15</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">7/16</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">7/17</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">7/18</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+        <div class="contents">
+      <div id="day-content-1" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/12 (주일) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">한계를 겸손히 인정하는 은혜</h3>
+          <div class="scripture-box">출애굽기 18:13-14</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 백성들을 보살피기 위해 아침부터 저녁까지 홀로 자리를 지켰습니다. 하나님의 은혜 아래 살아가는 나 자신 역시 육체와 감정의 한계를 지닌 연약한 존재임을 솔직하게 고백하고 있나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루 나의 모든 피로와 염려를 내 힘으로 해결하려 하지 말고, 하던 일을 멈춘 채 10분 동안 조용히 침묵하며 주님께 인생의 무거운 짐을 모두 맡기는 기도를 드려보세요.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">사랑하는 주님, 저의 작고 연약함을 겸손히 인정합니다. 모든 일을 내가 다 해결하려는 지독한 영웅주의를 내려놓고, 오직 주님만이 제 삶의 온전한 주인이 되심을 고백하는 하루가 되게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-2" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/13 (월) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">하나님이 보내주신 영적 멘토</h3>
+          <div class="scripture-box">출애굽기 18:17-18</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"하나님은 모세가 지쳐 완전히 무너지기 전에 장인 이드로를 보내 객관적이고 지혜로운 조언을 듣게 하셨습니다. 내 삶에서 영적으로 나를 붙잡아 주는 '이드로'와 같은 동역자는 누구인가요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나를 위해 늘 기도해 주고, 지쳤을 때 바른 영적 권면으로 인도해 주었던 믿음의 멘토나 동역자에게 전화를 걸거나 정성 담은 감사 메시지를 전해봅시다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">하나님, 제가 지쳐 쓰러지기 전 미리 도움의 손길과 지혜로운 사람들을 예비해 주시는 선행적 은총에 감사드립니다. 제 곁에 세워주신 귀한 만남들을 소중히 여기고 영적으로 늘 깨어 있게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-3" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/14 (화) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">경청과 배움의 부드러운 마음</h3>
+          <div class="scripture-box">출애굽기 18:24</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"모세는 수많은 기적을 행한 최고의 지도자였지만, 장인 이드로의 권면을 아주 겸손하게 경청했습니다. 나는 누군가의 따뜻한 조언이나 신앙적 조언을 들을 때 마음의 빗장을 열고 잘 귀를 기울이나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 가족이나 목장 지체, 혹은 직장 동료와 대화할 때 나의 주장이나 해결책을 먼저 말하기보다, 상대방의 말을 끝까지 진심으로 경청하고 격려해 봅니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">오 주님, 제 경험과 연륜이 쌓일수록 마음이 완고해지지 않도록 도와주옵소서. 먼저 하나님의 말씀 앞에 겸손히 납작 엎드리며, 이웃을 통해 들려주시는 권면의 음성에 귀를 활짝 열어 두게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-4" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/15 (수) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">속력보다 방향, 성품의 유능함 '하일'</h3>
+          <div class="scripture-box">출애굽기 18:21 (전반부)</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"이드로가 권장한 리더의 조건은 세상적인 능력이나 행정력이 아니라, 도덕적 고결함과 용기를 지닌 성품인 '하일(חַיִל)'이었습니다. 나는 속력다 방향을, 스펙보다 내면의 거룩한 성품을 더 소중히 가꾸고 있습니까?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">오늘 하루 나의 언어생활과 업무 영역에서 잔꾀나 세상적 요령을 피우지 않고, 하나님을 경외하는 마음으로 정직하고 용기 있게 행동하기로 하나만 결단하고 실천해 봅시다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">거룩하신 주님, 세상이 요구하는 화려한 스펙과 속력에 마음을 빼앗기지 않게 하옵소서. 오직 하나님 한 분만을 두려워하며, 삶의 매 순간 성결을 지키는 내면의 단단한 성품을 길러가게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-5" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/16 (목) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">기대어 무너지지 않는 신실함 '에메트'</h3>
+          <div class="scripture-box">출애굽기 18:21 (중반부)</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"참된 동역자의 성품은 하나님처럼 변함이 없고 흔들리지 않아, 언제든 등을 기대어도 안전한 바위 같은 성품 '에메트(אֱמֶת)'입니다. 나는 공동체에서 다른 이들이 깊이 신뢰할 수 있는 사람입니까?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">과거에 내가 쉽게 뱉었던 약속이나 다른 사람의 신뢰를 무너뜨렸던 일들을 조용히 돌아보고, 오늘 아주 사소한 약속이나 행동 하나라도 신실하게 완수하도록 최선을 다해봅시다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">언제나 한결같은 신실하심으로 저를 품어주시는 하나님, 저 또한 가벼이 말하고 쉽게 요동하는 인생이 되지 않게 하소서. 이웃들이 믿고 평안히 마음을 나눌 수 있는 바위같이 든든하고 투명한 통로가 되게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-6" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/17 (금) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">탐욕을 미워하는 삶, 사회적 성결</h3>
+          <div class="scripture-box">출애굽기 18:21 (후반부)</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"공동체의 참된 리더는 부정직한 소득과 탐욕을 철저히 거절하는 사람입니다. 나의 직장이나 비즈니스, 그리고 재정의 영역에서 혹시 다른 이의 아픔이나 착취를 방관한 채 유익을 얻고 있는 부분은 없나요?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">나의 물질 사용 습관을 점검해보고, 일터에서 지극히 낮은 위치에 있는 이들의 눈물을 흘리게 하는 일은 없었는지 돌아보며, 이번 주 내 이웃과 사회의 약자를 돕기 위한 작고 따뜻한 나눔을 결단해 봅니다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">공의로우신 주님, 부정직한 소득을 미워하며 이웃을 귀하게 여기는 사회적 성결을 나의 삶 속에 구현하기를 원합니다. 돈과 탐욕의 지배에서 완전히 벗어나, 나보다 남을 더 아끼는 주님의 완전한 사랑을 삶으로 입증하게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="day-content-7" class="day-content">
+        <div class="card">
+          <div class="card-header">
+            <span class="day-badge">7/18 (토) 묵상</span>
+            <span class="cross-icon">✝</span>
+          </div>
+          <h3 class="card-title">다 함께 평안에 이르는 '샬롬'의 길</h3>
+          <div class="scripture-box">출애굽기 18:23</div>
+          
+          <div class="content-section">
+            <label>묵상 질문</label>
+            <p class="reflection">"서로의 짐을 가볍게 나누어질 때 공동체의 구성원 모두가 깊은 회복과 평안(샬롬)에 이르게 됩니다. 나는 우리 교회가 '샬롬'을 이루도록 짐을 기꺼이 나누어 지는 건강한 한 기둥이 되고 있습니까?"</p>
+          </div>
+          
+          <div class="content-section">
+            <label>실천 방안</label>
+            <p class="action">내가 기쁨으로 짊어질 수 있는 교회의 소박한 봉사의 영역(뒷정리, 작은 심부름, 예배 안내 돕기 등)이나 목장 모임 안에서 먼저 손 내밀 수 있는 섬김의 자리를 구체적으로 한 가지 찾아 실천에 옮겨봅시다.</p>
+          </div>
+          
+          <div class="prayer-box">
+            <label>오늘의 기도</label>
+            <p class="prayer">평강의 왕 예수님, 우리 라온동행교회 전체에 참된 샬롬의 계절이 오기를 기도합니다. 나 혼자 앞서 달리는 영웅이 되지 않게 하시고, 이드로가 되고 십부장이 되어 서로의 어깨를 토닥이며 느리더라도 끝까지 기쁘게 동행하는 행복한 공동체가 되게 하옵소서. 아멘.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="wesley-quote">
+            <p style="font-style:italic; margin-bottom:10px;">"그ريس도인의 완전은 하나님을 전심으로 사랑하며, 이웃을 사랑하는 것입니다."</p>
+            <p style="font-size:0.75rem; opacity:0.7;">- 존 웨슬리 -</p>
+        </div>
+        <footer>© 라온동행교회 주간 묵상집</footer>
+    </div>
+    <script>
+        const startDate = new Date('2026-07-12');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 묵상은 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+            if(!isInit) window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
