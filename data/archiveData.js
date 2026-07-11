@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "평안히 가도록 (출애굽기 18:13–23, 모세 시리즈 14)",
+    "scripture": "출애굽기 18:13–23",
+    "date": "2026-07-12",
+    "url": "2026/20260712daily.html",
+    "fileName": "20260712daily.html"
+  },
+  {
     "title": "모세가 손을 들면",
     "scripture": "출애굽기 17:8-13",
     "date": "2026-07-05",
