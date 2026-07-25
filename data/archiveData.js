@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "시내산에 오르다: 하나님과의 깊은 동행으로의 초대",
+    "scripture": "출애굽기 24장 12-18절",
+    "date": "2026-07-26",
+    "url": "2026/260726daily.html",
+    "fileName": "260726daily.html"
+  },
+  {
     "title": "평안히 가도록 (출애굽기 18:13–23, 모세 시리즈 14)",
     "scripture": "출애굽기 18:13–23",
     "date": "2026-07-12",
