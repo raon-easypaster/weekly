@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "법궤 (모세 시리즈 16)",
+    "scripture": "출애굽기 25:10-11",
+    "date": "2026-08-02",
+    "url": "2026/260802daily.html",
+    "fileName": "260802daily.html"
+  },
+  {
     "title": "시내산에 오르다: 하나님과의 깊은 동행으로의 초대",
     "scripture": "출애굽기 24장 12-18절",
     "date": "2026-07-26",
