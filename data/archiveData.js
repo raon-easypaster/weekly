@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "나를 지워주십시오(모세시리즈 17)",
+    "scripture": "출애굽기 32장 1절",
+    "date": "2026-08-09",
+    "url": "2026/260809daily.html",
+    "fileName": "260809daily.html"
+  },
+  {
     "title": "법궤 (모세 시리즈 16)",
     "scripture": "출애굽기 25:10-11",
     "date": "2026-08-02",
