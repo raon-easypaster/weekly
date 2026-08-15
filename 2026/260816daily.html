@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>얼굴의 광채 하나님과 함께한 은혜의 흔적</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="출애굽기 34장 29-35절">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">8/16</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">8/17</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">8/18</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">8/19</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">8/20</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">8/21</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">8/22</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 16일 주일요일 | 출애굽기 34:29</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 16일 주일요일  
+                오늘의 본문: 출애굽기 34:29
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세의 얼굴에 나타난 것은 권력을 상징하는 뿔이 아니라 하나님의 임재를 나타내는 빛이었습니다. 우리가 추구해야 할 것은 세상의 힘이 아니라 하나님을 만난 은혜의 흔적임을 기억합시다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>카란(Karan): 빛을 뻗다, 광채가 나다</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 전통에서 성결은 인간의 의지로 성취하는 것이 아니라 하나님의 은혜를 전적으로 신뢰할 때 주어지는 선물입니다. 모세의 광채는 그가 하나님과 연합되어 있음을 보여주는 성결의 증거입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내 삶은 사람들에게 힘과 권세를 자랑하는 뿔을 보여주고 있습니까 아니면 하나님의 은혜를 드러내는 빛을 보여주고 있습니까?"</div>
+                실천 방안: 오늘 하루 동안 나의 능력이나 소유를 자랑하기보다 하나님이 주신 은혜에 감사하는 말을 세 번 이상 표현해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님 제 안에 세상적인 욕망의 뿔을 키우지 않게 하시고 오직 주님과 동행함으로 얻어지는 거룩한 빛만이 가득하게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 17일 월요일 | 출애굽기 34:29</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 17일 월요일  
+                오늘의 본문: 출애굽기 34:29
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세의 얼굴에 광채가 난 유일한 이유는 그가 여호와와 말하였기 때문입니다. 성도의 변화는 무언가를 행함에 있는 것이 아니라 주님 앞에 머무는 시간에서 시작됩니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>카란(Karan): 하나님의 영광이 나타나다</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 기복신앙적 행위보다 하나님과의 인격적인 교제를 중시합니다. 모세의 40일 금식보다 중요한 것은 그가 하나님과 대면하여 대화했다는 본질적 관계에 있습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 최근에 하나님과 깊은 대화를 나누기 위해 정해진 시간을 구별하여 드린 적이 있습니까?"</div>
+                실천 방안: 오늘 하루 중 가장 조용한 10분을 정하여 아무런 요구 없이 오직 하나님의 이름을 부르며 머물러 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">기도와 말씀의 시간을 통해 주님의 얼굴을 구하게 하시고 주님의 은혜가 제 삶의 모든 부분에 자연스럽게 스며들게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 18일 화요일 | 출애굽기 34:29</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 18일 화요일  
+                오늘의 본문: 출애굽기 34:29
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 자기 얼굴에 광채가 나는 것을 깨닫지 못했습니다. 진정한 변화와 성결은 스스로를 뽐내는 것이 아니라 하나님께 집중할 때 자연스럽게 나타나는 열매입니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결은 자의식적인 도덕적 노력이 아니라 성령의 역사로 말미암아 우리 내면이 그리스도의 형상으로 빚어지는 과정입니다. 모세의 무지는 자아를 잊고 하나님께 몰입한 성도의 겸손을 보여줍니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나의 신앙적 성장을 스스로 증명하려고 애쓰고 있지는 않습니까? 혹은 주변 사람들이 내게서 그리스도의 향기를 느낀다고 말한 적이 있습니까?"</div>
+                실천 방안: 오늘 하루는 나의 옳음을 증명하려 하기보다 다른 사람의 말을 끝까지 들어주며 경청의 태도를 유지해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님 제 자신의 변화에 집중하며 교만해지지 않게 하시고 오직 주님만 바라볼 때 성령께서 제 인격을 빚어 가시도록 저를 내어드립니다.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 19일 수요일 | 출애굽기 34:30-32</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 19일 수요일  
+                오늘의 본문: 출애굽기 34:30-32
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세의 변화는 아론과 이스라엘 자손들이 먼저 알아차렸습니다. 개인의 영적 체험은 공동체 안에서 확인되어야 하며 그들을 주님의 말씀으로 인도하는 사명으로 연결되어야 합니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회의 성결론은 개인의 수양에 머물지 않고 공동체적 책임으로 확장됩니다. 모세의 광채가 백성들에게 하나님의 말씀을 전하는 권위가 되었듯 우리의 성결도 이웃을 주님께로 인도하는 통로가 되어야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "우리 가족과 이웃은 나를 통해 하나님의 살아계심과 은혜를 느끼고 있습니까?"</div>
+                실천 방안: 가까운 가족이나 지인에게 나의 부족한 점은 무엇인지 정직하게 묻고 그들의 의견을 하나님 앞에서 묵상해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">저의 말과 행동이 공동체에 덕이 되게 하시고 저를 보는 사람들이 하나님의 자비하심을 깨닫게 되는 축복의 통로가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 20일 목요일 | 출애굽기 34:34</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 20일 목요일  
+                오늘의 본문: 출애굽기 34:34
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 하나님 앞에 나아갈 때 얼굴을 가렸던 수건을 벗었습니다. 하나님께서는 우리의 꾸며진 모습이 아니라 정직하고 진실한 민낯을 원하십니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">온전한 성결을 위해서는 하나님 앞에서 자신의 죄성과 부족함을 가리지 않고 드러내는 회개가 필수적입니다. 하나님과의 사귐은 수건을 벗는 것과 같은 완전한 개방에서 깊어집니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "하나님 앞에서조차 거룩해 보이려고 꾸미거나 숨기고 있는 마음의 수건은 무엇입니까?"</div>
+                실천 방안: 오늘 기도 시간에는 나의 성공이나 자랑거리가 아닌 가장 부끄럽고 연약한 부분들을 하나님께 숨김없이 고백해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">하나님 사람 앞에서는 포장할지라도 주님 앞에서는 모든 가식을 벗게 하옵소서. 저의 있는 모습 그대로를 받아주시고 거룩하게 변화시켜 주옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 21일 금요일 | 출애굽기 34:33, 35</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 21일 금요일  
+                오늘의 본문: 출애굽기 34:33, 35
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세가 얼굴을 수건으로 가린 것은 두려워하는 백성들을 배려한 행동이었습니다. 성도는 자신의 영광을 과시하지 않고 이웃의 연약함을 보듬는 겸손을 갖추어야 합니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결한 삶의 증거는 이웃을 향한 자비와 사랑으로 나타납니다. 자신의 영적 우월감을 드러내지 않고 공동체의 수준에 맞춰 자신을 낮추는 것이 그리스도의 마음을 닮은 성결입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내가 가진 지식이나 신앙적 경험이 혹시 누군가에게 부담이나 두려움을 주고 있지는 않습니까?"</div>
+                실천 방안: 주변에 신앙의 길에서 힘들어하거나 두려워하는 사람이 있다면 나의 자랑을 멈추고 그들의 눈높이에서 따뜻한 격려의 말을 전해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님 제게 주신 은혜를 자랑의 도구로 삼지 않게 하시고 이웃을 섬기고 배려하는 사랑의 도구로 사용하게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 8월 22일 토요일 | 출애굽기 34:35</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 8월 22일 토요일  
+                오늘의 본문: 출애굽기 34:35
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세의 광채는 사라질 영광이었지만 예수 그리스도 안에 있는 우리는 주의 영으로 말미암아 영원한 영광으로 변화됩니다. 다시 오실 주님을 기다리며 날마다 거룩함을 덧입읍시다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 재림의 소망 속에서 성결의 완성을 추구합니다. 모세의 옛 언약의 영광을 넘어 그리스도 안에서 우리가 누리는 성결의 은혜는 영광에서 영광으로 이르는 영원한 생명의 역사입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 날마다 주님의 형상을 닮아가는 변화의 기쁨을 누리며 다시 오실 주님을 고대하고 있습니까?"</div>
+                실천 방안: 한 주간을 돌아보며 나를 통해 나타난 작은 변화들에 감사하고 다음 주에도 주님과 동행할 구체적인 시간 계획을 세워 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">사라져갈 세상의 영광에 마음을 두지 않게 하시고 영원한 하늘의 영광을 소망하며 날마다 주님의 성품을 닮아가는 거룩한 성도가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-08-16');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
