@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "얼굴의 광채 하나님과 함께한 은혜의 흔적",
+    "scripture": "출애굽기 34:29",
+    "date": "2026-08-16",
+    "url": "2026/260816daily.html",
+    "fileName": "260816daily.html"
+  },
+  {
     "title": "나를 지워주십시오(모세시리즈 17)",
     "scripture": "출애굽기 32장 1절",
     "date": "2026-08-09",
