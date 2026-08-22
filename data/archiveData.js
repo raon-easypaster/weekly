@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "모세 19 - 시내산을 떠나라",
+    "scripture": "출애굽기 33:1",
+    "date": "2026-08-23",
+    "url": "2026/260823daily.html",
+    "fileName": "260823daily.html"
+  },
+  {
     "title": "얼굴의 광채 하나님과 함께한 은혜의 흔적",
     "scripture": "출애굽기 34:29",
     "date": "2026-08-16",
