@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "설계자입니까 현장감독입니까?",
+    "scripture": "출애굽기 40:16",
+    "date": "2026-09-13",
+    "url": "2026/260913daily.html",
+    "fileName": "260913daily.html"
+  },
+  {
     "title": "모세 19 - 시내산을 떠나라",
     "scripture": "출애굽기 33:1",
     "date": "2026-08-23",
