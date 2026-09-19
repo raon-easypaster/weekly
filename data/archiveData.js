@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "분노의 대가",
+    "scripture": "민수기 20:1",
+    "date": "2026-09-20",
+    "url": "2026/260920daily.html",
+    "fileName": "260920daily.html"
+  },
+  {
     "title": "설계자입니까 현장감독입니까?",
     "scripture": "출애굽기 40:16",
     "date": "2026-09-13",
