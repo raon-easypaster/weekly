@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>계승 (모세 22)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="민수기 27:15–23">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">9/27</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">9/28</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">9/29</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">9/30</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">10/1</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">10/2</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">10/3</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 9월 27일 주일요일 | 민수기 27:15-17</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 9월 27일 주일요일  
+                오늘의 본문: 민수기 27:15-17
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">가나안 땅에 들어가지 못하게 된 모세는 개인적인 아픔보다 하나님의 백성들이 목자 없는 양과 같이 될 것을 더 깊이 염려하며 기도합니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결론에서 성결한 삶은 자기중심성을 벗어나 하나님의 뜻과 이웃의 유익을 구하는 사랑의 성취입니다. 모세가 자신의 업적을 남기기보다 공동체의 미래를 위해 기도한 것은 자기 자리를 붙드는 사람이 아니라 사명을 붙드는 성결한 지도자의 모습입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 현재 맡은 자리에서 나의 이름이 기억되기를 원합니까, 아니면 하나님의 사명이 이어지기를 원합니까?"</div>
+                실천 방안: 오늘 내가 속한 공동체(가정, 교회 등)에서 내가 떠난 뒤에도 이어져야 할 소중한 가치가 무엇인지 적어보고 이를 위해 기도합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">하나님, 나의 유익과 이름을 드러내기보다 하나님의 백성들이 평안하기를 구하는 모세의 마음을 우리에게 허락하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 9월 28일 월요일 | 민수기 27:16</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 9월 28일 월요일  
+                오늘의 본문: 민수기 27:16
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 하나님을 모든 육체의 생명의 하나님이라 부르며, 다음 지도자를 세워달라고 간구합니다. 이는 사람의 영을 가장 잘 아시는 분이 하나님이심을 고백하는 것입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>Elohe Haruhot Lekol Basar: 모든 육체의 생명의 하나님</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결교회는 모든 인간의 생명이 하나님의 주권 아래 있음을 믿습니다. 하나님은 각 사람의 내면과 기질을 온전히 아시고, 그분의 거룩한 사역을 위해 적합한 사람을 부르시고 성별하십니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "우리 가정과 교회의 다음 세대를 가장 잘 준비시키실 분이 하나님이심을 온전히 신뢰하고 있습니까?"</div>
+                실천 방안: 자녀나 공동체의 후배들의 이름을 한 명씩 부르며, 그들의 영을 아시는 하나님께서 그들을 인도하시도록 간절히 기도합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">모든 영을 아시는 하나님, 우리 다음 세대가 하나님의 손에 붙들려 사명자로 세워지게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 9월 29일 화요일 | 민수기 27:18</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 9월 29일 화요일  
+                오늘의 본문: 민수기 27:18
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">하나님은 모세의 후계자로 여호수아를 지목하시며, 그가 하나님의 영이 머무는 자라고 말씀하십니다. 지도력의 근원은 인간의 능력이 아니라 성령의 임재입니다.</div>
+          </div>
+
+          
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상 (Original Word Meditation)</h3>
+            <div class="section-body"><strong>Ruach: 영</strong></div>
+          </div>
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결의 은혜는 성령의 임재(Ruach)를 통해 가능합니다. 성령이 머무는 자는 자신의 힘으로 일하지 않고 하나님의 지혜와 능력으로 사역합니다. 여호수아는 모세의 복제품이 아니라 성령 안에서 준비된 새로운 사명자입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 오늘 나의 경험과 지식에 의존하고 있습니까, 아니면 내 안에 계신 성령님의 인도하심을 구하고 있습니까?"</div>
+                실천 방안: 중요한 결정을 내리기 전, 내 생각을 앞세우기보다 잠시 멈추어 성령님의 세밀한 음성에 귀를 기울입니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">성령님, 오늘도 우리 안에 머물러 주셔서 하나님의 일을 감당할 지혜와 용기를 주시옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 9월 30일 수요일 | 민수기 27:20</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 9월 30일 수요일  
+                오늘의 본문: 민수기 27:20
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">하나님은 모세에게 자신의 존귀를 여호수아에게 돌려 회중이 복종하게 하라고 명하십니다. 이는 명목상의 자리가 아니라 실제적인 권한을 위임하라는 뜻입니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">성결한 공동체는 질서와 존중을 통해 세워집니다. 권위는 지배를 위한 권력이 아니라 섬김을 위한 책임입니다. 지도자가 권위를 적절히 위임할 때 지체들은 각자의 자리에서 거룩한 책임감을 배우게 됩니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 다른 사람에게 책임을 맡길 때, 그에 필요한 권한과 정보도 기꺼이 나누고 있습니까?"</div>
+                실천 방안: 내가 혼자 쥐고 있던 작은 결정권이나 정보 하나를 동료나 가족과 공유하고, 그들의 판단을 신뢰해 봅니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 내가 가진 것을 움켜쥐지 않고 기쁘게 나누어 다른 사람을 세워주는 넉넉한 마음을 주옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 10월 1일 목요일 | 민수기 27:21</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 10월 1일 목요일  
+                오늘의 본문: 민수기 27:21
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">여호수아는 제사장 엘르아살을 통해 하나님의 뜻을 물어야 했습니다. 이는 독단적인 결정이 아니라 공동체의 질서 속에서 하나님의 인도를 받는 과정을 의미합니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">교회는 그리스도의 몸이며 우리는 그 지체입니다. 성결교회의 정체성은 성도가 각자의 은사를 따라 협력하며 그리스도를 머리로 삼는 데 있습니다. 지도자 역시 말씀과 공동체의 분별 아래 서 있어야 합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 내 판단을 하나님의 뜻과 동일시하는 교만을 경계하고 있습니까?"</div>
+                실천 방안: 가정이나 공동체의 중요한 일을 결정할 때, 혼자 결정하지 않고 다른 구성원들의 의견을 경청하며 함께 기도하는 시간을 갖습니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리의 머리 되신 주님, 우리가 서로의 소리에 귀 기울이며 하나님의 뜻을 함께 찾아가는 겸손한 공동체가 되게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 10월 2일 금요일 | 민수기 27:22-23</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 10월 2일 금요일  
+                오늘의 본문: 민수기 27:22-23
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 하나님의 명령대로 여호수아를 온 회중 앞에 세우고 안수하여 위탁합니다. 사명은 밀실이 아니라 공동체 안에서 공개적으로 전수됩니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">위탁과 안수는 단순히 능력을 전수하는 마술적 행위가 아니라, 공동체 앞에서 거룩한 책임을 맡았음을 선포하는 예식입니다. 모든 성도는 왕 같은 제사장으로서 각자의 삶의 현장에서 하나님의 일을 위탁받은 자들입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "나는 하나님께서 내게 맡기신 가정과 직장과 교회의 사명을 공적인 책임으로 진중하게 여기고 있습니까?"</div>
+                실천 방안: 하나님께서 오늘 나에게 안수하시며 맡기신 가장 중요한 책임이 무엇인지 다시 한번 되새기며 성실히 수행합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">나를 부르시고 사명을 맡기신 하나님, 오늘 하루도 맡겨진 자리에서 충성스럽게 살아가게 하옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 10월 3일 토요일 | 민수기 27:17</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 10월 3일 토요일  
+                오늘의 본문: 민수기 27:17
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">모세는 양 떼를 위해 중보했지만 영원히 함께할 수 없었습니다. 그러나 우리에게는 양들을 위해 목숨을 버리신 영원한 선한 목자 예수 그리스도가 계십니다.</div>
+          </div>
+
+          
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">인간 지도자는 떠나지만 교회의 머리이신 예수 그리스도는 어제나 오늘이나 영원토록 동일하십니다. 성결교회의 소망은 사람의 능력이 아니라 우리와 항상 함께하시는 예수 그리스도의 신실하심에 있습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "사람이나 환경이 바뀔 때 나의 신앙이 흔들립니까, 아니면 영원한 목자 되신 예수님을 바라봅니까?"</div>
+                실천 방안: 교회와 가정의 미래를 걱정하기보다, 교회의 주인이신 예수님께 모든 염려를 맡기고 감사의 고백을 드립니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">라온동행교회의 주인이시며 우리 삶의 영원한 목자 되신 예수님, 오직 주님만이 우리를 인도하여 주시옵소서.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    </div>
+    <script>
+        const startDate = new Date('2026-09-27');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
