@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "계승 (모세 22)",
+    "scripture": "민수기 27:15-17",
+    "date": "2026-09-27",
+    "url": "2026/260927daily.html",
+    "fileName": "260927daily.html"
+  },
+  {
     "title": "분노의 대가",
     "scripture": "민수기 20:1",
     "date": "2026-09-20",
