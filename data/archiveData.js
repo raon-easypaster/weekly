@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "마지막 축복 (모세 23)",
+    "scripture": "신명기 33:1",
+    "date": "2026-10-04",
+    "url": "2026/261004daily.html",
+    "fileName": "261004daily.html"
+  },
+  {
     "title": "계승 (모세 22)",
     "scripture": "민수기 27:15-17",
     "date": "2026-09-27",
