@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "아름다운 퇴장(모세 24)",
+    "scripture": "신명기 34:1-3",
+    "date": "2026-10-18",
+    "url": "2026/261018daily.html",
+    "fileName": "261018daily.html"
+  },
+  {
     "title": "마지막 축복 (모세 23)",
     "scripture": "신명기 33:1",
     "date": "2026-10-04",
