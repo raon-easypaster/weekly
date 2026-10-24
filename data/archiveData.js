@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "귀히 쓰는 그릇 묵상집",
+    "scripture": "",
+    "date": "2026-10-25",
+    "url": "2026/261025daily.html",
+    "fileName": "261025daily.html"
+  },
+  {
     "title": "아름다운 퇴장(모세 24)",
     "scripture": "신명기 34:1-3",
     "date": "2026-10-18",
