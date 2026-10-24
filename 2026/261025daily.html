@@ -1,0 +1,883 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>귀히 쓰는 그릇 묵상집</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+
+<style>
+/* === 토큰 시스템 === */
+:root {
+  --bg: #faf8f4;
+  --bg-card: #ffffff;
+  --bg-soft: #f4f0e8;
+  --fg: #1e1a14;
+  --fg-sub: #5a5246;
+  --fg-muted: #9a9286;
+  --accent: #7c5c2e;
+  --accent-light: #c8a96e;
+  --accent-pale: #f0e8d6;
+  --divider: #e8e0d0;
+  --gold: #b8922a;
+  --clay: #8c4a2a;
+  --locked: #d0ccc4;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #18160f;
+    --bg-card: #221f16;
+    --bg-soft: #2a2618;
+    --fg: #f0ebe0;
+    --fg-sub: #c0b89a;
+    --fg-muted: #786e58;
+    --accent: #c8a96e;
+    --accent-light: #d4b87a;
+    --accent-pale: #2e2818;
+    --divider: #3a3420;
+    --gold: #d4a832;
+    --clay: #c06438;
+    --locked: #3a3628;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #18160f;
+  --bg-card: #221f16;
+  --bg-soft: #2a2618;
+  --fg: #f0ebe0;
+  --fg-sub: #c0b89a;
+  --fg-muted: #786e58;
+  --accent: #c8a96e;
+  --accent-light: #d4b87a;
+  --accent-pale: #2e2818;
+  --divider: #3a3420;
+  --gold: #d4a832;
+  --clay: #c06438;
+  --locked: #3a3628;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.7;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 48px);
+}
+
+/* 헤더 */
+.page-header {
+  position: relative;
+  padding: 48px 0 32px;
+  text-align: center;
+}
+.church-name {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.sermon-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(26px, 6vw, 38px);
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.3;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.sermon-title em {
+  color: var(--accent);
+  font-style: normal;
+}
+.scripture-badge {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--fg-sub);
+  border: 1px solid var(--divider);
+  border-radius: 99px;
+  padding: 4px 14px;
+  margin-bottom: 18px;
+}
+.date-range {
+  font-size: 12px;
+  color: var(--fg-muted);
+  letter-spacing: 0.05em;
+}
+.header-rule {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 20px auto 0;
+  border: none;
+}
+
+/* 탭 네비게이션 */
+.tab-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 0 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  flex: 0 0 auto;
+  min-width: 62px;
+  padding: 10px 6px 8px;
+  border-radius: 14px;
+  border: 1.5px solid var(--divider);
+  background: var(--bg-card);
+  color: var(--fg-sub);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.tab-btn .tab-date {
+  display: block;
+  font-size: 10px;
+  color: var(--fg-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.tab-btn .tab-day {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Noto Serif KR', serif;
+  line-height: 1.1;
+}
+.tab-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(124,92,46,0.3);
+  transform: translateY(-2px);
+}
+.tab-btn.active .tab-date { color: rgba(255,255,255,0.7); }
+.tab-btn.locked {
+  background: var(--locked);
+  border-color: transparent;
+  color: var(--fg-muted);
+  cursor: default;
+  opacity: 0.6;
+}
+.tab-btn.locked .tab-date { color: var(--fg-muted); }
+.lock-icon {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--fg-muted);
+  color: var(--bg);
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.tab-btn.locked .lock-icon { display: flex; }
+
+/* 묵상 카드 */
+.meditation-panel { display: none; }
+.meditation-panel.active { display: block; }
+
+.med-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  margin-bottom: 16px;
+}
+
+.card-header {
+  background: var(--accent-pale);
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+.card-day-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.card-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.card-body { padding: 0; }
+
+.section {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-text {
+  font-size: 14.5px;
+  color: var(--fg-sub);
+  line-height: 1.85;
+}
+
+/* 말씀 읽기 */
+.scripture-block {
+  background: var(--accent-pale);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.scripture-ref {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.scripture-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  color: var(--fg);
+  line-height: 1.9;
+}
+
+/* 원문 묵상 */
+.word-block {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.word-original {
+  font-family: serif;
+  font-size: 28px;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.word-romanize {
+  font-size: 11px;
+  color: var(--fg-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+.word-meaning {
+  font-weight: 700;
+  color: var(--fg);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.word-desc {
+  font-size: 13.5px;
+  color: var(--fg-sub);
+  line-height: 1.8;
+}
+
+/* 신학적 주해 */
+.theology-text {
+  font-size: 14.5px;
+  color: var(--fg-sub);
+  line-height: 1.9;
+}
+
+/* 묵상과 실천 */
+.qa-block { margin-bottom: 16px; }
+.qa-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--clay);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+.qa-content {
+  font-size: 14.5px;
+  color: var(--fg-sub);
+  line-height: 1.85;
+}
+.qa-content.question {
+  font-family: 'Noto Serif KR', serif;
+  font-style: italic;
+  color: var(--fg);
+}
+.practice-box {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* 기도 */
+.prayer-section {
+  background: linear-gradient(135deg, var(--accent-pale), var(--bg-soft));
+  padding: 22px 24px;
+}
+.prayer-icon {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
+.prayer-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  color: var(--fg);
+  line-height: 2;
+  font-style: italic;
+}
+.prayer-amen {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* 하단 문구 */
+.page-footer {
+  text-align: center;
+  padding: 32px 0 16px;
+  font-size: 12px;
+  color: var(--fg-muted);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+.footer-cross {
+  font-size: 20px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 잠금 화면 */
+.locked-message {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--fg-muted);
+}
+.locked-message .lock-big { font-size: 36px; margin-bottom: 12px; display: block; }
+.locked-message p { font-size: 14px; line-height: 1.7; }
+</style>
+
+<!-- 헤더 -->
+<div class="page-header">
+  <p class="church-name">라온동행교회 · 가정예배 묵상</p>
+  <h1 class="sermon-title"><em>귀히</em> 쓰는 그릇</h1>
+  <div class="scripture-badge">디모데후서 2:20–21 | 2026.10.25</div>
+  <p class="date-range">2026년 10월 25일 (주일) — 10월 31일 (토)</p>
+  <hr class="header-rule">
+</div>
+
+<!-- 탭 네비게이션 -->
+<nav class="tab-nav" role="tablist" aria-label="날짜 탭">
+  <button class="tab-btn" data-day="1" role="tab">
+    <span class="tab-date">10/25</span>
+    <span class="tab-day">주일</span>
+  </button>
+  <button class="tab-btn" data-day="2" role="tab">
+    <span class="tab-date">10/26</span>
+    <span class="tab-day">월</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+  <button class="tab-btn" data-day="3" role="tab">
+    <span class="tab-date">10/27</span>
+    <span class="tab-day">화</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+  <button class="tab-btn" data-day="4" role="tab">
+    <span class="tab-date">10/28</span>
+    <span class="tab-day">수</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+  <button class="tab-btn" data-day="5" role="tab">
+    <span class="tab-date">10/29</span>
+    <span class="tab-day">목</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+  <button class="tab-btn" data-day="6" role="tab">
+    <span class="tab-date">10/30</span>
+    <span class="tab-day">금</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+  <button class="tab-btn" data-day="7" role="tab">
+    <span class="tab-date">10/31</span>
+    <span class="tab-day">토</span>
+    <span class="lock-icon">🔒</span>
+  </button>
+</nav>
+
+<!-- 패널들 -->
+
+<!-- 1일차: 주일 -->
+<div class="meditation-panel" data-panel="1" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">1일차 · 주일 / 10월 25일</p>
+      <h2 class="card-title">그릇의 가치보다 그릇의 깨끗함</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:20–21</p>
+          <p class="scripture-text">큰 집에는 금 그릇과 은 그릇뿐 아니라 나무 그릇과 질그릇도 있어 귀하게 쓰는 것도 있고 천하게 쓰는 것도 있나니, 그러므로 누구든지 이런 것에서 자기를 깨끗하게 하면 귀히 쓰는 그릇이 되어 거룩하고 주인의 쓰심에 합당하며 모든 선한 일에 준비함이 되리라.</p>
+        </div>
+        <p class="section-text">바울은 그릇의 재질이 아니라 그릇의 깨끗함을 기준으로 삼습니다. 금 그릇이든 질그릇이든, 깨끗하게 씻겨진 그릇이라야 주인의 손에 들려 쓰임을 받습니다. 이 말씀은 복음을 맡은 자로서 어떤 삶의 태도를 가져야 하는지를 가정의 그릇 이야기로 생생하게 전합니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">σκεῦος</span>
+          <div>
+            <p class="word-romanize">스큐오스 (skeuos)</p>
+            <p class="word-meaning">"그릇" — 도구, 용기, 사람</p>
+            <p class="word-desc">헬라어 '스큐오스'는 단순한 그릇을 넘어 '하나님께 쓰이는 도구'로서의 사람을 가리킵니다. 바울 자신도 "택한 나의 그릇"(행 9:15)으로 불렸습니다. 우리 한 사람 한 사람이 하나님의 손에 들린 스큐오스임을 기억하십시오.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">웨슬리안 성결 신학은 중생(거듭남)에 머물지 않고 성결(sanctification), 곧 삶의 정화를 강조합니다. 이 본문은 그 성결의 삶을 구체적으로 묘사합니다. 하나님께서 우리를 먼저 은혜로 부르셨고(선행적 은총), 그 은혜에 응답하여 우리는 불의에서 자신을 깨끗하게 하는 삶으로 나아갑니다. 이것이 사중복음 중 성결의 은혜입니다. 그릇의 재질(환경과 배경)은 우리가 바꿀 수 없지만, 그릇을 씻는 일은 지금 이 자리에서 시작할 수 있습니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">나는 지금 어떤 그릇입니까? 내 삶에서 씻겨져야 할 것이 있다면, 그것은 무엇입니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘 예배 후, 가족들과 함께 "우리 가정에서 씻어내야 할 한 가지 습관이나 말은 무엇일까?"를 나누고, 한 주간 함께 실천할 작은 약속 하나를 정해 보세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">하나님 아버지, 오늘 말씀 앞에 서니 제 그릇이 얼마나 더럽혀져 있는지를 보게 됩니다. 재질을 탓하기 전에, 먼저 스스로를 깨끗하게 하는 삶으로 나아가게 하소서. 이 한 주간, 우리 가정이 주님의 손에 들려 선한 일에 쓰이는 정결한 그릇이 되게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2일차: 월 -->
+<div class="meditation-panel" data-panel="2" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">2일차 · 월요일 / 10월 26일</p>
+      <h2 class="card-title">바울의 유언, 복음을 맡은 자의 삶</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:15</p>
+          <p class="scripture-text">너는 진리의 말씀을 옳게 분별하며 부끄러울 것이 없는 일꾼으로 인정된 자로 자신을 하나님 앞에 드리기를 힘쓰라.</p>
+        </div>
+        <p class="section-text">디모데후서는 바울이 떠날 때를 느끼며 디모데에게 남긴 유언과 같은 서신입니다. 바울이 원한 것은 단 하나, 복음을 맡은 사람이 부끄러움 없이 하나님 앞에 서는 것이었습니다. 말로 가르치기에 앞서 삶으로 먼저 살아내는 것이 복음 전도자의 기본임을 말씀은 오늘도 일깨웁니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">ὀρθοτομέω</span>
+          <div>
+            <p class="word-romanize">오르토토메오 (orthotoméō)</p>
+            <p class="word-meaning">"옳게 분별하다" — 바르게 자르다</p>
+            <p class="word-desc">직역하면 '직선으로 자른다'는 뜻입니다. 목수가 나무를 곧게 켜듯, 진리의 말씀을 비틀거나 덜어내지 않고 바르게 다루라는 의미입니다. 말씀을 내 뜻에 맞게 가져다 쓰는 것이 아니라, 말씀이 나를 곧게 세우도록 허용하는 것이 '오르토토메오'의 삶입니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">웨슬리는 "말만 번지르르한 신앙"을 경계하고, 삶으로 증명되는 신앙을 강조했습니다. 복음을 활자로 가르치기는 쉽지만, 그 복음을 살아내는 것은 성결의 은혜 없이는 불가능합니다. 바울이 디모데에게 남긴 이 당부는 오늘 우리에게도 동일하게 적용됩니다. 성결은 '완벽함'이 아니라, 날마다 하나님 앞에서 부끄러움 없이 서려는 '지속적인 지향'입니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">나는 복음을 말로만 전하고 있지는 않습니까? 오늘 내 삶에서 복음이 증거되고 있는 순간은 언제입니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘 하루, 내가 설교한 대로(혹은 믿는 대로) 행동하지 못한 순간을 저녁에 한 가지 돌아보고, 하나님께 솔직히 아뢰는 짧은 기도를 드리세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">주님, 저는 믿는 대로 살기가 참 어렵습니다. 그러나 그 어려움을 핑계 삼지 않게 하소서. 말씀을 옳게 분별하고, 그 말씀대로 살아내는 일꾼이 되게 하소서. 우리 가정이 진리의 말씀 위에 굳게 서게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3일차: 화 -->
+<div class="meditation-panel" data-panel="3" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">3일차 · 화요일 / 10월 27일</p>
+      <h2 class="card-title">말의 무게, 불의에서 떠나라</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:16–17</p>
+          <p class="scripture-text">망령되고 헛된 말을 버리라 그들은 경건하지 아니함에 점점 나아가나니, 그들의 말은 악성 종양이 퍼져나감과 같은데.</p>
+        </div>
+        <p class="section-text">바울은 거짓 가르침, 무익한 말다툼, 망령되고 헛된 말을 먼저 차단한 뒤에야 그릇 이야기를 꺼냅니다. 불의에서 떠나는 것, 그 구체적인 출발점이 바로 '입에서 나오는 말'입니다. 말은 마음에서 시작하며, 한 번 뱉은 말은 주워 담을 수 없기에 더욱 신중해야 합니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">γάγγραινα</span>
+          <div>
+            <p class="word-romanize">강그라이나 (gángraina)</p>
+            <p class="word-meaning">"악성 종양" — 괴사, 썩어들어감</p>
+            <p class="word-desc">헬라어 의학 용어로, 살이 썩어 들어가는 병입니다. 바울은 거짓된 말이 믿음의 공동체 안에서 이처럼 퍼져나간다고 경고합니다. 악한 말 한마디가 가정 안에서, 교회 안에서 얼마나 깊이 상처를 남기는지를 오늘 다시 생각해 보십시오.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">성결의 삶은 외면의 행동만이 아니라 내면의 말과 마음을 다루는 것입니다. 웨슬리는 '사회적 성결'을 강조하며, 우리의 말과 관계가 공동체에 미치는 영향을 중요하게 여겼습니다. 불의에서 떠나는 것은 공동체를 지키는 일이기도 합니다. 어둠은 빛을 이기지 못하듯, 정결한 말은 악성 종양 같은 거짓을 막아냅니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">오늘 내가 뱉은 말 중에, 누군가에게 상처를 주거나 믿음을 흔들었을 말이 있었습니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘 하고 싶은 말이 있다면, 말하기 전에 한 번 멈추고 세 가지를 확인해 보세요. 사실인가? 이 말이 상대를 세우는가? 지금 꼭 해야 하는가? 이 세 가지를 모두 통과한 말만 하기로 오늘 하루 실천해 보세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">주님, 제 입술을 지켜 주소서. 망령되고 헛된 말을 버리고, 사람을 세우는 말, 진리를 담은 말을 하게 하소서. 우리 가정 안에서 주고받는 말들이 서로를 살리는 말이 되게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4일차: 수 -->
+<div class="meditation-panel" data-panel="4" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">4일차 · 수요일 / 10월 28일</p>
+      <h2 class="card-title">재질이 아니라 깨끗함이 기준</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:20</p>
+          <p class="scripture-text">큰 집에는 금 그릇과 은 그릇뿐 아니라 나무 그릇과 질그릇도 있어 귀하게 쓰는 것도 있고 천하게 쓰는 것도 있나니.</p>
+        </div>
+        <p class="section-text">세상은 금 그릇과 은 그릇을 선호합니다. 권력, 재력, 학벌로 자신을 증명하려 합니다. 그러나 바울은 재질의 차이를 인정하면서도 거기서 멈추지 않습니다. 투박한 질그릇이라도 깨끗하면 식탁의 정중앙을 차지할 수 있습니다. 오늘, 내 그릇의 재질보다 그 상태를 돌아볼 시간을 가지십시오.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <p class="section-label" style="color: var(--fg-muted); font-size: 12px; letter-spacing: 0;">— 생략 (오늘 묵상은 비유 자체에 집중합니다) —</p>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">바울은 당시 계급 사회의 현실을 직시하면서도, 복음 안에서 계급에 얽매이지 않았습니다. 빌립보서 3장에서 그는 자신의 모든 배경과 지위를 배설물로 여겼습니다. 웨슬리도 귀족이나 평민을 가리지 않고 광장과 광산에서 복음을 전했습니다. 성결 신학은 어느 재질의 그릇이든 하나님의 은혜로 정결함을 얻을 수 있다고 선포합니다. 선행적 은총은 모든 사람에게 차별 없이 임합니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">나는 나 자신의 '재질'을 한계로 여기고 있지 않습니까? 혹은 다른 사람의 '재질'로 그를 판단하고 있지는 않습니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘 나와 다른 환경, 배경을 가진 사람을 만나게 된다면, 그 사람의 재질이 아니라 그 사람 안에 있을 하나님의 가능성을 바라보며 한 마디 격려의 말을 건네보세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">주님, 저는 때로 제 배경과 조건이 부족하다 느끼며 스스로 한계를 긋습니다. 그러나 주님은 재질이 아니라 깨끗함으로 저를 보시는 분이십니다. 우리 가정 안에서도 서로를 재질로 평가하지 않고, 하나님의 형상으로 바라보는 눈을 허락하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5일차: 목 -->
+<div class="meditation-panel" data-panel="5" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">5일차 · 목요일 / 10월 29일</p>
+      <h2 class="card-title">자신을 깨끗하게 하라</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:21</p>
+          <p class="scripture-text">그러므로 누구든지 이런 것에서 자기를 깨끗하게 하면 귀히 쓰는 그릇이 되어 거룩하고 주인의 쓰심에 합당하며 모든 선한 일에 준비함이 되리라.</p>
+        </div>
+        <p class="section-text">"자기를 깨끗하게 하면"이라는 말씀에는 능동적인 책임이 담겨 있습니다. 하나님께서 은혜를 주시되, 우리도 그 은혜에 응답하여 스스로 불의를 차단하고 죄를 지을 수 없는 환경을 만들어야 합니다. 죄를 짓지 않으려면 죄를 지을 수 없는 곳에 가면 됩니다. 투명성, 공동체의 점검, 말씀 안에 머무름이 그 구체적인 방법입니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">ἁγιάζω</span>
+          <div>
+            <p class="word-romanize">하기아조 (hagiázō)</p>
+            <p class="word-meaning">"거룩하게 하다" — 구별되다, 성별하다</p>
+            <p class="word-desc">성결교회 신학의 핵심 단어입니다. '하기아조'는 단순히 도덕적 청결이 아니라, 하나님께 구별되어 드려지는 상태를 의미합니다. 우리가 자신을 깨끗하게 할 때, 하나님께서 우리를 '하기아조', 곧 거룩하게 하십니다. 이것이 성화의 과정입니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">웨슬리안 성결 신학에서 성화(聖化)는 단번에 이루어지지 않습니다. 중생의 은혜로 시작된 변화는 성결의 은혜 안에서 날마다 성장합니다. "자기를 깨끗하게 하라"는 권면은 이 지속적인 성화의 과정을 요청합니다. 사중복음의 '성결' 은혜는 선반 위의 장식이 아니라, 날마다 씻겨지고 다시 주님께 드려지는 삶의 과정입니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">내 삶에서 죄를 짓기 쉬운 환경이 있다면 무엇입니까? 그것을 차단하기 위해 내가 할 수 있는 구체적인 행동이 있습니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘, 나를 점검해 줄 수 있는 한 사람(가족, 신앙 친구)과 이번 주 내가 어떻게 살았는지를 솔직하게 나누는 짧은 대화를 나눠 보세요. 공동체 안에서의 투명성이 그릇을 씻는 힘입니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">주님, 저는 혼자서는 정결을 유지하기 어렵습니다. 그래서 공동체를 주신 것을 감사합니다. 스스로를 점검하고, 서로를 돌아보는 우리 가정이 되게 하소서. 날마다 씻겨지며 주님께 드려지는 그릇이 되게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6일차: 금 -->
+<div class="meditation-panel" data-panel="6" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">6일차 · 금요일 / 10월 30일</p>
+      <h2 class="card-title">그릇의 목적, 선한 일에 쓰이는 것</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:22–24</p>
+          <p class="scripture-text">또한 네가 청년의 정욕을 피하고 주를 깨끗한 마음으로 부르는 자들과 함께 의와 믿음과 사랑과 화평을 따르라. 주의 종은 마땅히 다투지 아니하고 모든 사람에 대하여 온유하며 가르치기를 잘하며 참으며.</p>
+        </div>
+        <p class="section-text">정결함은 자기 자신을 지키는 것에서 끝나지 않습니다. 정결한 그릇은 반드시 사람을 향해 열려야 합니다. 불의에서 떠난 사람이 다음에 하는 일은 온유하게 사람들을 대하는 것입니다. 나를 반대하는 사람에게도 온유함으로 대하는 것, 그것이 귀히 쓰이는 그릇의 모습입니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">πραΰτης</span>
+          <div>
+            <p class="word-romanize">프라위테스 (praýtēs)</p>
+            <p class="word-meaning">"온유함" — 길들여진 힘</p>
+            <p class="word-desc">온유는 나약함이 아닙니다. '길들여진 힘'으로, 강한 말과 행동을 할 수 있음에도 절제하여 부드럽게 대하는 덕목입니다. 예수님의 온유함이 바로 이것이었습니다. 힘을 가지고도 섬기기를 택하신 분, 우리도 그분을 닮아 가는 것이 성결의 열매입니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">웨슬리는 성결을 개인의 내면적 변화에서 사회적 책임으로 이어지는 것으로 보았습니다. '사회적 성결' 개념에서 성결한 삶은 가난한 자, 소외된 자, 나를 반대하는 자에게도 온유하게 열리는 삶입니다. 정결한 그릇은 선반 위에 보관되는 것이 아니라, 주인의 손에 들려 사람들에게 나아가는 것입니다. 재림의 소망은 이 삶의 긴박성을 더해 줍니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">나는 지금 누구에게 선한 일을 할 준비가 되어 있습니까? 특별히 나와 다르거나 나를 불편하게 하는 사람에게도 온유할 수 있습니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘, 관계가 불편하거나 서먹한 사람에게 먼저 작은 친절을 베풀어 보세요. 말 한마디, 문자 한 줄도 충분합니다. 온유는 작은 것에서 시작됩니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">주님, 저는 나를 불편하게 하는 사람에게 먼저 손을 내밀기 참 어렵습니다. 그러나 주님은 저를 먼저 사랑하셨습니다. 그 사랑으로 저도 온유하게 사람들에게 열리게 하소서. 우리 가정이 주변 사람에게 선한 일을 준비하는 가정이 되게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7일차: 토 -->
+<div class="meditation-panel" data-panel="7" role="tabpanel">
+  <div class="med-card">
+    <div class="card-header">
+      <p class="card-day-label">7일차 · 토요일 / 10월 31일</p>
+      <h2 class="card-title">은혜가 먼저, 응답이 나중</h2>
+    </div>
+    <div class="card-body">
+      <div class="section">
+        <p class="section-label">오늘의 말씀 읽기</p>
+        <div class="scripture-block">
+          <p class="scripture-ref">디모데후서 2:19 · 빌립보서 3:8–9</p>
+          <p class="scripture-text">그러나 하나님의 견고한 터는 섰으니 … 주의 이름을 부르는 자마다 불의에서 떠날지어다. / 내 주 그리스도 예수를 아는 지식이 가장 고상하기 때문이라 … 그리스도를 믿음으로 말미암은 것이니 곧 믿음으로 하나님께로부터 난 의라.</p>
+        </div>
+        <p class="section-text">먼저 깨끗해져야 주님께서 받아 주신다는 말이 아닙니다. 이미 은혜로 우리를 부르신 주님께서, 이제 그 은혜에 합당하게 살라고 말씀하시는 것입니다. 은혜가 먼저이고, 그 은혜에 응답하는 삶이 뒤따릅니다. 이것이 복음입니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">원문 단어 묵상</p>
+        <div class="word-block">
+          <span class="word-original">ἕτοιμος</span>
+          <div>
+            <p class="word-romanize">헤토이모스 (hétoimos)</p>
+            <p class="word-meaning">"준비된" — 갖추어진 상태</p>
+            <p class="word-desc">21절의 "모든 선한 일에 준비함이 되리라"에서 쓰인 단어입니다. 준비된 그릇은 주인이 언제 들어도 쓸 수 있는 상태입니다. 오늘 한 주를 마무리하며 스스로에게 물으십시오. 나는 지금 하나님의 선한 일을 위해 '헤토이모스', 준비된 그릇입니까?</p>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <p class="section-label">성결교회 신학적 주해</p>
+        <p class="theology-text">웨슬리안 신학의 핵심은 선행적 은총입니다. 하나님께서 먼저 우리를 찾아오셨고, 먼저 은혜를 베푸셨습니다. 우리의 정결함은 하나님께 인정받기 위한 조건이 아니라, 받은 사랑에 응답하는 삶의 표현입니다. 사중복음 전체(중생, 성결, 신유, 재림)는 이 은혜의 하나님이 우리를 완전히 변화시키신다는 선포입니다. 한 주간의 묵상을 마무리하며, 이 은혜의 하나님께 우리 가정을 다시 드립니다.</p>
+      </div>
+      <div class="section">
+        <p class="section-label">묵상과 실천</p>
+        <div class="qa-block">
+          <p class="qa-label">묵상 질문</p>
+          <p class="qa-content question">이번 한 주간, 하나님의 은혜가 내 삶에서 어떻게 나타났습니까? 그 은혜에 응답하여 내가 한 작은 한 가지는 무엇입니까?</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-label">실천 방안</p>
+          <div class="practice-box">
+            <p class="qa-content">오늘 저녁, 가족과 함께 한 주간 하나님이 우리에게 주신 은혜를 한 가지씩 나누고, 내일 드릴 예배를 위해 함께 짧은 기도를 드리세요. 이 한 주의 묵상이 내일의 예배로 이어지게 하세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prayer-section">
+        <span class="prayer-icon">🙏</span>
+        <p class="prayer-text">하나님 아버지, 한 주간 이 말씀과 함께 걸어온 것을 감사드립니다. 먼저 은혜를 베풀어 주신 주님, 그 은혜에 응답하여 살아가는 우리 가정이 되게 하소서. 주님의 선한 일에 쓰이는 정결하고 준비된 그릇으로, 다가오는 한 주도 살게 하여 주옵소서.</p>
+        <span class="prayer-amen">아멘</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 잠금 안내 패널 -->
+<div class="meditation-panel" data-panel="locked" role="tabpanel">
+  <div class="med-card">
+    <div class="locked-message">
+      <span class="lock-big">🔒</span>
+      <p>이 날의 묵상은 아직 열리지 않았습니다.<br>해당 날짜가 되면 자동으로 열립니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 하단 -->
+<footer class="page-footer">
+  <span class="footer-cross">✝</span>
+  <p>사중복음의 은혜가 우리 가정의 빛이 됩니다</p>
+  <p style="margin-top: 4px;">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</p>
+</footer>
+
+<script>
+(function() {
+  // 날짜 계산
+  const START = new Date('2026-10-25T00:00:00+09:00');
+  const now = new Date();
+  const kstNow = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+  const todayKST = new Date(kstNow.toISOString().slice(0, 10) + 'T00:00:00+09:00');
+  const diffDays = Math.floor((todayKST - START) / 86400000);
+  const todayPanel = Math.max(1, Math.min(7, diffDays + 1));
+
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.meditation-panel');
+
+  function showPanel(day) {
+    // 패널
+    panels.forEach(p => p.classList.remove('active'));
+    const target = document.querySelector(`.meditation-panel[data-panel="${day}"]`);
+    if (target) target.classList.add('active');
+
+    // 탭
+    tabs.forEach(t => t.classList.remove('active'));
+    const activeTab = document.querySelector(`.tab-btn[data-day="${day}"]`);
+    if (activeTab) activeTab.classList.add('active');
+  }
+
+  // 탭 초기 상태 설정
+  tabs.forEach(tab => {
+    const day = parseInt(tab.dataset.day);
+    if (day > todayPanel) {
+      tab.classList.add('locked');
+    }
+    tab.addEventListener('click', () => {
+      if (day > todayPanel) {
+        // 잠금 패널 표시
+        panels.forEach(p => p.classList.remove('active'));
+        document.querySelector('.meditation-panel[data-panel="locked"]').classList.add('active');
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      } else {
+        showPanel(day);
+      }
+    });
+  });
+
+  // 초기 패널 표시
+  showPanel(todayPanel);
+
+  // 로컬스토리지로 마지막 탭 복원 (선택사항)
+  try {
+    const saved = localStorage.getItem('med-raon-tab-1025');
+    if (saved) {
+      const day = parseInt(saved);
+      if (day >= 1 && day <= todayPanel) showPanel(day);
+    }
+  } catch(e) {}
+
+  // 탭 변경 시 저장
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      try { localStorage.setItem('med-raon-tab-1025', tab.dataset.day); } catch(e) {}
+    });
+  });
+})();
+</script>
+
+</body></html>
