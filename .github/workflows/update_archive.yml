@@ -4,6 +4,7 @@ on:
     paths:
       - '2025/*.html'
       - '2026/*.html'
+      - '2027/*.html'
       - 'index.html'
       - 'scripts/buildArchiveData.js'
     branches:
