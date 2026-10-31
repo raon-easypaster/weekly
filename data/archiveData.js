@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "안녕! 고린도(고린도전서 1)",
+    "scripture": "고린도전서 1:1-2",
+    "date": "2026-11-01",
+    "url": "2026/261101daily.html",
+    "fileName": "261101daily.html"
+  },
+  {
     "title": "귀히 쓰는 그릇 묵상집",
     "scripture": "",
     "date": "2026-10-25",
