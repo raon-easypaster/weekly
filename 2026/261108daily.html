@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>분열(고린도전서 2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background: #f8fafc; padding: 20px; word-break: keep-all; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+        .worship-card { background: white; border-radius: 1.5rem; padding: 3rem; margin: 0 auto 2rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #f1f5f9; display: none; }
+        .worship-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .guide-header { text-align: center; border-bottom: 2px double #e2e8f0; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .church-tag { color: #065f46; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .church-title { font-size: 1.875rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem; }
+        .guide-info { color: #64748b; font-size: 0.875rem; font-weight: 500; }
+        .section { margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; border-left: 4px solid #047857; padding-left: 1.25rem; margin-bottom: 1.5rem; }
+        .section-body { font-size: 1.125rem; color: #1e293b; line-height: 1.625; white-space: pre-wrap; }
+        .summary { background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-weight: 700; font-style: italic; color: #334155; margin-bottom: 1.5rem; }
+        .italic { font-style: italic; color: #475569; }
+        .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; }
+        
+        .tabs-container { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 12px; justify-content: center; scrollbar-width: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { position: relative; flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1px solid #e2e8f0; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { background: #047857; border-color: #047857; color: white; box-shadow: 0 4px 6px rgba(4, 120, 87, 0.2); transform: translateY(-2px); }
+        .tab-btn.locked { background: #f1f5f9; color: #cbd5e1; cursor: not-allowed; }
+        .tab-label { font-size: 8px; font-weight: 700; opacity: 0.8; }
+        .tab-name { font-size: 1.1rem; font-weight: 800; }
+        .lock-icon { position: absolute; top: -5px; right: -5px; font-size: 10px; background: #94a3b8; color: white; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+        .tab-btn.locked .lock-icon { display: flex; }
+        @media print { .tabs-container { display: none !important; } .worship-card { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #eee; margin: 0; max-width: none; } }
+    </style>
+</head>
+<body data-scripture="고린도전서 1장 10-17절">
+    <div class="tabs-container">
+      <button id="tab-btn-1" class="tab-btn" onclick="showDay(1, this)">
+        <span class="tab-label">11/8</span>
+        <span class="tab-name">주일</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-2" class="tab-btn" onclick="showDay(2, this)">
+        <span class="tab-label">11/9</span>
+        <span class="tab-name">월</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-3" class="tab-btn" onclick="showDay(3, this)">
+        <span class="tab-label">11/10</span>
+        <span class="tab-name">화</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-4" class="tab-btn" onclick="showDay(4, this)">
+        <span class="tab-label">11/11</span>
+        <span class="tab-name">수</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-5" class="tab-btn" onclick="showDay(5, this)">
+        <span class="tab-label">11/12</span>
+        <span class="tab-name">목</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-6" class="tab-btn" onclick="showDay(6, this)">
+        <span class="tab-label">11/13</span>
+        <span class="tab-name">금</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+      <button id="tab-btn-7" class="tab-btn" onclick="showDay(7, this)">
+        <span class="tab-label">11/14</span>
+        <span class="tab-name">토</span>
+        <span class="lock-icon">🔒</span>
+      </button>
+      
+    </div>
+    <div class="contents">
+      <article id="day-content-1" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 8일 주일요일 | 고린도전서 1:10</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 8일 주일요일  
+                오늘의 본문: 고린도전서 1:10
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 글로에의 집 사람들을 통해 고린도 교회의 분쟁 소식을 듣고, 우리 주 예수 그리스도의 이름으로 같은 마음과 같은 뜻으로 온전히 합하라고 권합니다. 우리가 함께 모이는 이름이 누구의 이름인지 생각하며 천천히 읽어봅시다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상</h3>
+            <div class="section-body">'온전히 합하라'는 헬라어로 '카테르티스메노이'이며 "바로잡아 온전하게 결합된 상태"를 가리킵니다. 같은 동사가 마태복음에서는 어부들이 그물을 깁는 장면에 사용됩니다. 찢어진 그물은 그냥 두면 저절로 붙지 않아서, 어디가 상했는지 살피고 직접 고쳐야 합니다. 오늘 우리 가정과 공동체에서 상한 곳은 없는지 주님 앞에서 조용히 살펴봅시다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 성결이 일상의 관계에서 드러나야 한다고 말합니다. 하나님을 사랑하는 마음이 곁에 있는 사람을 대하는 태도로 이어져야 합니다. 우리를 구원하신 주님께서 성령으로 우리를 새롭게 하시므로, 우리는 그 은혜를 의지하여 연합을 위한 사랑을 배워갑니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "우리 가정에서 서로의 마음이 찢어진 그물처럼 상한 곳은 없습니까?"</div>
+                실천 방안: 가족 한 사람에게 "요즘 마음이 불편한 일은 없었어요?"라고 먼저 물어보고 끝까지 들어봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리를 한 몸으로 부르신 주님, 갈등을 숨기지 않고 상한 곳을 살펴 바로잡는 가정이 되게 하옵소서. 성령으로 우리를 새롭게 하여 사랑을 배워가게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-2" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 9일 월요일 | 고린도전서 1:11-12</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 9일 월요일  
+                오늘의 본문: 고린도전서 1:11-12
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 글로에의 집 편으로 고린도 교인들의 분쟁 소식이 들렸다고 말하며, 그들이 "나는 바울에게, 나는 아볼로에게, 나는 게바에게, 나는 그리스도에게 속한 자라"고 한다고 전합니다. 신앙의 길에서 도움을 준 사람의 이름이 어느새 사람을 나누는 이름이 되어 가고 있었습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학의 관점에서, 우리를 도와준 사람에게 감사하는 일은 귀하지만 그 이름으로 나를 높이고 다른 사람의 믿음을 낮게 보는 일은 성결한 삶과 거리가 멉니다. 성결은 은혜를 받은 사람이 곁의 사람을 귀하게 대하는 태도로 드러납니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내가 신앙의 길에서 감사하는 사람은 누구입니까? 그 감사가 다른 사람을 낮게 보는 마음으로 흐르고 있지는 않습니까?"</div>
+                실천 방안: 신앙생활에서 도움받은 사람 한 명에게 감사의 인사를 전하고, 같은 마음으로 곁의 다른 사람도 귀하게 여기겠다고 다짐해봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 신앙의 길에서 만난 사람들을 감사하게 하시되 그 이름으로 서로를 나누지 않게 하옵소서. 우리가 속한 분은 오직 주님이심을 기억하게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-3" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 10일 화요일 | 고린도전서 1:13</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 10일 화요일  
+                오늘의 본문: 고린도전서 1:13
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 "그리스도께서 어찌 나뉘었느냐 바울이 너희를 위하여 십자가에 못 박혔으며 바울의 이름으로 너희가 세례를 받았느냐"라고 묻습니다. 우리를 위해 자기 생명을 내어주신 분은 바울이 아니라 예수 그리스도이십니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 모든 은혜의 출발을 그리스도의 십자가에 둡니다. 나도 은혜로 살아났고 내 옆에 앉은 사람도 같은 주님의 은혜로 살아났습니다. 내가 저 사람보다 더 귀한 값을 치르고 구원받은 것이 아니므로, 서로를 귀하게 여기는 것이 성결한 삶의 모습입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "주님은 나를 위해 십자가에 달리셨고, 내가 불편해하는 그 사람을 위해서도 십자가에 달리셨습니다. 이 사실이 오늘 나의 태도를 어떻게 바꿉니까?"</div>
+                실천 방안: 요즘 마음이 불편한 사람 한 명을 떠올리고, "주님이 이 사람을 위해서도 십자가에 달리셨다"고 마음으로 고백하며 짧게 기도해봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리를 위해 십자가에 달리신 주님, 나와 내 곁의 사람이 같은 은혜로 살아났음을 잊지 않게 하옵소서. 불편한 사람을 함부로 대하지 않게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-4" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 11일 수요일 | 고린도전서 1:14-16</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 11일 수요일  
+                오늘의 본문: 고린도전서 1:14-16
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 그리스보와 가이오 외에는 아무에게도 세례를 베풀지 않았음을 감사하며, 스데바나 집 사람에게도 세례를 베풀었다고 덧붙입니다. 누구에게 세례를 받았는가가 사람을 나누는 근거가 되어서는 안 되기 때문입니다. 바울이 세례를 주었어도 그 사람은 그리스도께 속합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 우리가 누구의 소유가 아니라 그리스도께 속한 사람이라고 고백합니다. 말씀을 전하고 누군가의 신앙을 도왔다고 해서 그 사람이 내 편이 되는 것은 아닙니다. 주님께서 맡기신 사람을 차별하지 않고 잘 섬기는 것이 성결한 섬김입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "내가 도움을 주었거나 가까운 사람이라는 이유로 다른 사람과 차별을 두고 있지는 않습니까?"</div>
+                실천 방안: 가정이나 교회에서 평소 마음이 덜 가던 사람 한 명에게 먼저 따뜻한 인사를 건네봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">주님, 우리가 서로를 내 사람과 아닌 사람으로 나누지 않게 하옵소서. 주님께서 맡기신 사람을 차별 없이 섬기게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-5" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 12일 목요일 | 고린도전서 1:17</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 12일 목요일  
+                오늘의 본문: 고린도전서 1:17
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">바울은 그리스도께서 자신을 보내신 목적이 세례를 베풀게 하려 하심이 아니라 오직 복음을 전하게 하려 하심이라고 말합니다. 그리고 말의 지혜로 하지 않는 것은 그리스도의 십자가가 헛되지 않게 하려는 것이라고 밝힙니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 십자가의 복음 위에 성결한 삶을 세웁니다. 세례가 중요하지 않다는 말이 아니며, 사람의 능력과 영향력이 십자가 앞을 가로막아서는 안 된다는 말씀입니다. 우리를 살리신 분은 예수님이시며, 이 복음을 기억할 때 사람을 자랑하던 마음을 내려놓을 수 있습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "우리 가정과 공동체에서 사람의 말솜씨나 능력에 가려져 잘 보이지 않는 것은 무엇입니까?"</div>
+                실천 방안: 오늘 하루 가족과 대화할 때 내 설명이나 자랑보다 예수님의 십자가를 한 번 떠올리고 감사 기도를 드려봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리를 살리신 주님, 사람의 능력과 영향력이 십자가를 가리지 않게 하옵소서. 복음을 기억하며 사람을 자랑하던 마음을 내려놓게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-6" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 13일 금요일 | 고린도전서 1:10-13</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 13일 금요일  
+                오늘의 본문: 고린도전서 1:10-13
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">분쟁이 조용해졌다고 관계가 회복된 것은 아닙니다. 떠난 사람에게도, 남아 있는 사람에게도 상처가 남습니다. 바울이 말한 "같은 마음과 같은 뜻"은 서로의 이야기를 들을 자리가 있을 때 조금씩 가까워집니다. 10절부터 13절까지 다시 천천히 읽어봅시다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">2️⃣ 원문 단어 묵상</h3>
+            <div class="section-body">'온전히 합하라'의 '카테르티스메노이'를 다시 기억해봅시다. 찢어진 그물은 어디가 상했는지 살피고 직접 고쳐야 합니다. 관계도 마찬가지로, 상한 곳을 살피고 서로의 이야기를 들을 때 바로 세워집니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 일상의 관계에서 성결이 드러나야 한다고 강조합니다. 내 자존심을 내려놓고 먼저 듣고 잘못한 일을 인정하는 일은 쉽지 않지만, 우리를 구원하신 주님께서 성령으로 우리를 새롭게 하십니다. 다름을 인정한다는 말로 죄와 잘못까지 덮는 것은 아니며, 불편한 이야기도 안전하게 꺼낼 수 있는 자리가 필요합니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: ""제 뜻은 이랬습니다. 그런데 제 말이 어떻게 들리셨는지도 듣고 싶습니다." 나는 이 말을 누구에게 건넬 수 있겠습니까?"</div>
+                실천 방안: 가족 가운데 한 사람에게 이 말을 건넬 수 있는지 기도로 준비하고, 가능하다면 내 설명을 마치는 데서 멈추지 않고 상대의 이야기를 먼저 들어봅시다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">들으시는 주님, 내 설명만 마치는 사람이 아니라 상대의 이야기를 먼저 듣는 사람이 되게 하옵소서. 안전하게 불편한 이야기도 나눌 수 있는 가정이 되게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+      <article id="day-content-7" class="worship-card day-content">
+        <div class="guide-header">
+          <div class="church-tag">기독교 대한성결교회</div>
+          <h2 class="church-title serif">라온동행교회 가정예배에서 말씀을 따라 사는 즐거운 묵상</h2>
+          <div class="guide-info">2026년 11월 14일 토요일 | 고린도전서 1:10-17</div>
+        </div>
+
+        <div class="guide-content">
+          <div class="section">
+            <h3 class="section-title serif">가정예배 가이드</h3>
+            <div class="section-body">
+              <div class="summary">
+                날짜: 2026년 11월 14일 토요일  
+                오늘의 본문: 고린도전서 1:10-17
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">1️⃣ 오늘의 말씀 읽기</h3>
+            <div class="section-body">이번 주 읽은 고린도전서 1장 10절부터 17절을 한 번에 읽으며 한 주를 돌아봅시다. 우리는 누구에게 속했습니까? 우리를 위해 십자가에 달리신 예수 그리스도께 속했고, 그 은혜를 함께 받은 사람들입니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">3️⃣ 성결교회 신학적 주해</h3>
+            <div class="section-body">웨슬리안 성결 신학은 은혜로 받은 삶을 살아내는 일을 강조합니다. "나는 구원받았으니 어떻게 살아도 괜찮아"가 아니라, 하나님을 사랑하는 마음이 곁의 사람을 대하는 태도로 이어져야 합니다. 서로를 가르면서 교회라고 말하는 모습을 주님 앞에서 돌아보고, 주님의 말씀으로 다시 부르심을 받습니다.</div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">4️⃣ 묵상과 실천</h3>
+            <div class="section-body">
+                <div class="summary">묵상 질문: "여러분을 통해 교회는 분열되고 있습니까, 아니면 연합하고 있습니까? 나는 지금 이 교회 안에 어떤 모습으로 서 있습니까?"</div>
+                실천 방안: 이번 한 주를 돌아보며, 관계를 다시 잇는 말 한마디를 가족이나 교우에게 먼저 건네봅시다. 험담하는 자리가 있었다면 그 사람을 위해 기도합니다.
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title serif">7️⃣ 축복의 기도</h3>
+            <div class="section-body italic">우리를 부르신 주님, 서로를 귀하게 여기며 함께 교회를 세워가는 가정이 되게 하옵소서. 우리 입에서 관계를 다시 잇는 말이 시작되게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          "사중복음의 은혜가 우리 가정의 빛이 됩니다." - 라온동행교회
+        </div>
+      </article>
+    
+    </div>
+    <script>
+        const startDate = new Date('2026-11-08');
+        startDate.setHours(0,0,0,0);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const todayDayNum = Math.max(0, Math.min(7, diffDays + 1));
+
+        function init() {
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById('tab-btn-' + i);
+                if (i > todayDayNum) btn.classList.add('locked');
+            }
+            const activeNum = todayDayNum === 0 ? 1 : todayDayNum;
+            showDay(activeNum, document.getElementById('tab-btn-' + activeNum), true);
+        }
+
+        function showDay(dayNum, btn, isInit = false) {
+            if (!isInit && dayNum > todayDayNum) {
+                alert('해당 요일의 예배서는 아직 공개되지 않았습니다. 내일을 기다려주세요! 😊');
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            const content = document.getElementById('day-content-' + dayNum);
+            if (content) content.classList.add('active');
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
