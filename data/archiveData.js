@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "분열(고린도전서 2)",
+    "scripture": "고린도전서 1:10",
+    "date": "2026-11-08",
+    "url": "2026/261108daily.html",
+    "fileName": "261108daily.html"
+  },
+  {
     "title": "안녕! 고린도(고린도전서 1)",
     "scripture": "고린도전서 1:1-2",
     "date": "2026-11-01",
