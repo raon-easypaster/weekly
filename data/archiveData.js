@@ -1,5 +1,12 @@
 window.ARCHIVE_DATA = [
   {
+    "title": "무엇을 감사할까?",
+    "scripture": "하박국 3:16",
+    "date": "2026-11-15",
+    "url": "2026/261115daily.html",
+    "fileName": "261115daily.html"
+  },
+  {
     "title": "분열(고린도전서 2)",
     "scripture": "고린도전서 1:10",
     "date": "2026-11-08",
